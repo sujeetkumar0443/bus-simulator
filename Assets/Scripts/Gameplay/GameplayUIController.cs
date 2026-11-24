@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameplayUIController : MonoBehaviour
 {
-    private VehicleStandardInput vehiclecontrols;
+    private VehicleStandardInput vehicleControls;
 
     public GameObject HandBrake;
 
@@ -119,7 +119,7 @@ public class GameplayUIController : MonoBehaviour
 
     public void setDefaultControls(GameObject obj)
     {
-        vehiclecontrols = obj.GetComponent<VehicleStandardInput>();
+        vehicleControls = obj.GetComponent<VehicleStandardInput>();
         backlights = obj.transform.Find("backlights").gameObject;
         carsignals = obj.transform.Find("carsignals").gameObject;
     }
@@ -168,31 +168,31 @@ public class GameplayUIController : MonoBehaviour
         {
             if (gearDrive.activeSelf)
             {
-                vehiclecontrols.forwardInput = 1f;
+                vehicleControls.forwardInput = 1f;
             }
             else if (gearReverse.activeSelf)
             {
-                vehiclecontrols.forwardInput = 0f;
-                vehiclecontrols.reverseInput = 1f;
+                vehicleControls.forwardInput = 0f;
+                vehicleControls.reverseInput = 1f;
             }
         }
         else
         {
-            vehiclecontrols.forwardInput = 1f;
+            vehicleControls.forwardInput = 1f;
         }
     }
 
     public void RaceButtonReleased()
     {
-        vehiclecontrols.forwardInput = 0f;
-        vehiclecontrols.reverseInput = 0f;
+        vehicleControls.forwardInput = 0f;
+        vehicleControls.reverseInput = 0f;
     }
 
     public void ReverseButtonPressed()
     {
         if (PlayerPrefs.GetInt("transmission") == 2)
         {
-            vehiclecontrols.handbrakeInput = 1f;
+            vehicleControls.handbrakeInput = 1f;
             if (backlights != null)
             {
                 backlights.SetActive(true);
@@ -200,8 +200,8 @@ public class GameplayUIController : MonoBehaviour
         }
         else
         {
-            vehiclecontrols.forwardInput = 0f;
-            vehiclecontrols.reverseInput = 1f;
+            vehicleControls.forwardInput = 0f;
+            vehicleControls.reverseInput = 1f;
         }
     }
 
@@ -209,7 +209,7 @@ public class GameplayUIController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("transmission") == 2)
         {
-            vehiclecontrols.handbrakeInput = 0f;
+            vehicleControls.handbrakeInput = 0f;
             if (backlights != null)
             {
                 backlights.SetActive(false);
@@ -217,14 +217,14 @@ public class GameplayUIController : MonoBehaviour
         }
         else
         {
-            vehiclecontrols.forwardInput = 0f;
-            vehiclecontrols.reverseInput = 0f;
+            vehicleControls.forwardInput = 0f;
+            vehicleControls.reverseInput = 0f;
         }
     }
 
     public void BreakButtonPressed()
     {
-        vehiclecontrols.handbrakeInput = 1f;
+        vehicleControls.handbrakeInput = 1f;
         if (backlights != null)
         {
             backlights.SetActive(true);
@@ -233,7 +233,7 @@ public class GameplayUIController : MonoBehaviour
 
     public void BreakButtonReleased()
     {
-        vehiclecontrols.handbrakeInput = 0f;
+        vehicleControls.handbrakeInput = 0f;
         if (backlights != null)
         {
             backlights.SetActive(false);
@@ -251,25 +251,25 @@ public class GameplayUIController : MonoBehaviour
     public void LeftButtonPressed(GameObject obj)
     {
         obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        vehiclecontrols.steerInput = -1f;
+        vehicleControls.steerInput = -1f;
     }
 
     public void LeftButtonReleased(GameObject obj)
     {
         obj.transform.localScale = new Vector3(1f, 1f, 1f);
-        vehiclecontrols.steerInput = 0f;
+        vehicleControls.steerInput = 0f;
     }
 
     public void RightButtonPressed(GameObject obj)
     {
         obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        vehiclecontrols.steerInput = 1f;
+        vehicleControls.steerInput = 1f;
     }
 
     public void RightButtonReleased(GameObject obj)
     {
         obj.transform.localScale = new Vector3(1f, 1f, 1f);
-        vehiclecontrols.steerInput = 0f;
+        vehicleControls.steerInput = 0f;
     }
 
     public void ResetInputs()

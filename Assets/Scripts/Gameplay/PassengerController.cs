@@ -20,11 +20,11 @@ public class PassengerController : MonoBehaviour
 
 	private bool exitedPerson;
 
-	private int lastindex;
+	private int lastIndex;
 
 	private bool sitAlready;
 
-	private GameObject Allpaths;
+	private GameObject allPaths;
 
 	private GameObject thisInstance;
 
@@ -72,7 +72,7 @@ public class PassengerController : MonoBehaviour
 	private void walkNow()
 	{
 		thisInstance.GetComponent<splineMove>().enabled = true;
-		thisInstance.GetComponent<splineMove>().startPoint = lastindex - 1;
+		thisInstance.GetComponent<splineMove>().startPoint = lastIndex - 1;
 		thisInstance.GetComponent<splineMove>().reverse = true;
 		animator.SetBool("issit", false);
 		animator.SetBool("iswalk", true);
@@ -86,7 +86,7 @@ public class PassengerController : MonoBehaviour
 		if (!sitAlready)
 		{
 			sitAlready = true;
-			lastindex = thisInstance.GetComponent<splineMove>().currentPoint;
+			lastIndex = thisInstance.GetComponent<splineMove>().currentPoint;
 			thisInstance.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
 			animator.SetBool("issit", true);
 			BusController.passengerSittingCount++;

@@ -12,58 +12,58 @@ public class PlayerAheadDetector : MonoBehaviour
 
 	public GameObject center;
 
-	private float prevspeed;
+	private float previousSpeed;
 
-	private bool playerdetected;
+	private bool playerDetected;
 
 	private void Start()
 	{
-		prevspeed = GetComponent<NavMeshAgent>().speed;
+		previousSpeed = GetComponent<NavMeshAgent>().speed;
 	}
 
 	private void Update()
 	{
-		if (Physics.Raycast(center.transform.position, center.transform.forward, out hit, 10f) && !playerdetected)
+		if (Physics.Raycast(center.transform.position, center.transform.forward, out hit, 10f) && !playerDetected)
 		{
 			if (hit.transform.tag == "Player")
 			{
-				playerdetected = true;
+				playerDetected = true;
 				GetComponent<navMove>().ChangeSpeed(0f);
 			}
 			else
 			{
-				GetComponent<navMove>().ChangeSpeed(prevspeed);
+				GetComponent<navMove>().ChangeSpeed(previousSpeed);
 			}
 		}
-		else if (Physics.Raycast(left.transform.position, left.transform.forward, out hit, 10f) && !playerdetected)
+		else if (Physics.Raycast(left.transform.position, left.transform.forward, out hit, 10f) && !playerDetected)
 		{
 			if (hit.transform.tag == "Player")
 			{
-				playerdetected = true;
+				playerDetected = true;
 				GetComponent<navMove>().ChangeSpeed(0f);
 			}
 			else
 			{
-				GetComponent<navMove>().ChangeSpeed(prevspeed);
+				GetComponent<navMove>().ChangeSpeed(previousSpeed);
 			}
 		}
-		else if (Physics.Raycast(right.transform.position, right.transform.forward, out hit, 10f) && !playerdetected)
+		else if (Physics.Raycast(right.transform.position, right.transform.forward, out hit, 10f) && !playerDetected)
 		{
 			if (hit.transform.tag == "Player")
 			{
-				playerdetected = true;
+				playerDetected = true;
 				GetComponent<navMove>().ChangeSpeed(0f);
 			}
 			else
 			{
-				GetComponent<navMove>().ChangeSpeed(prevspeed);
+				GetComponent<navMove>().ChangeSpeed(previousSpeed);
 			}
 		}
-		else if (playerdetected)
+		else if (playerDetected)
 		{
-			playerdetected = false;
+			playerDetected = false;
 			Debug.Log("speeeeed : " + GetComponent<NavMeshAgent>().speed);
-			GetComponent<navMove>().ChangeSpeed(prevspeed);
+			GetComponent<navMove>().ChangeSpeed(previousSpeed);
 		}
 	}
 }

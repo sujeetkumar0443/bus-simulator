@@ -21,9 +21,9 @@ public class DashboardController : MonoBehaviour
 
 	public GameObject[] wipers;
 
-	private float KMHNeedleRotation;
+	private float kmhNeedleRotation;
 
-	private float RPMNeedleRotation;
+	private float rpmNeedleRotation;
 
 	public GameObject hands;
 
@@ -56,20 +56,20 @@ public class DashboardController : MonoBehaviour
 	{
 		if ((bool)rpmNeedleSprite)
 		{
-			RPMNeedleRotation = playerHandler.engineRPM / 50f;
-			rpmNeedleSprite.transform.localEulerAngles = new Vector3(rpmNeedleSprite.transform.localEulerAngles.x, rpmNeedleSprite.transform.localEulerAngles.y, 0f - RPMNeedleRotation);
+			rpmNeedleRotation = playerHandler.engineRPM / 50f;
+			rpmNeedleSprite.transform.localEulerAngles = new Vector3(rpmNeedleSprite.transform.localEulerAngles.x, rpmNeedleSprite.transform.localEulerAngles.y, 0f - rpmNeedleRotation);
 		}
 		if ((bool)needleSprite)
 		{
 			if (RCC_Settings.Instance.units == RCC_Settings.Units.KMH)
 			{
-				KMHNeedleRotation = playerHandler.speed;
+				kmhNeedleRotation = playerHandler.speed;
 			}
 			else
 			{
-				KMHNeedleRotation = playerHandler.speed * 0.62f;
+				kmhNeedleRotation = playerHandler.speed * 0.62f;
 			}
-			needleSprite.transform.localEulerAngles = new Vector3(needleSprite.transform.localEulerAngles.x, needleSprite.transform.localEulerAngles.y, 0f - KMHNeedleRotation);
+			needleSprite.transform.localEulerAngles = new Vector3(needleSprite.transform.localEulerAngles.x, needleSprite.transform.localEulerAngles.y, 0f - kmhNeedleRotation);
 		}
 	}
 

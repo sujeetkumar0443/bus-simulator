@@ -15,17 +15,17 @@ public class ParkingChecker : MonoBehaviour
 
 	private bool park4;
 
-	private float traficspeed;
+	private float trafficSpeed;
 
 	public GameObject parkingbar;
 
 	public GameObject controls;
 
-	private bool parkingcomplete;
+	private bool parkingComplete;
 
-	private bool parkingenter;
+	private bool parkingEnter;
 
-	private GameObject parkingobj;
+	private GameObject parkingObject;
 
 	public LevelCompleteController gamecond;
 
@@ -39,7 +39,7 @@ public class ParkingChecker : MonoBehaviour
 
 	public CameraController campos;
 
-	private bool passengerloaded;
+	private bool passengerLoaded;
 
 	private bool done1;
 
@@ -49,7 +49,7 @@ public class ParkingChecker : MonoBehaviour
 
 	private void Start()
 	{
-		passengerloaded = false;
+		passengerLoaded = false;
 		passengerloadcount = 0;
 		parksucces = false;
 	}
@@ -59,21 +59,21 @@ public class ParkingChecker : MonoBehaviour
 		if (park1 && park2 && park3 && park4 && !done)
 		{
 			done = true;
-			parkingcomplete = true;
+			parkingComplete = true;
 		}
-		if (parkingcomplete && parkingbar.GetComponent<Image>().fillAmount < 1f)
+		if (parkingComplete && parkingbar.GetComponent<Image>().fillAmount < 1f)
 		{
 			parkingbar.GetComponent<Image>().fillAmount += 0.05f;
 		}
-		else if (parkingcomplete && parkingbar.GetComponent<Image>().fillAmount == 1f)
+		else if (parkingComplete && parkingbar.GetComponent<Image>().fillAmount == 1f)
 		{
-			parkingcomplete = false;
+			parkingComplete = false;
 			park1 = false;
 			park2 = false;
 			park3 = false;
 			park4 = false;
 			parkingbar.GetComponent<Image>().fillAmount = 0f;
-			if (passengerloaded)
+			if (passengerLoaded)
 			{
 				for (int i = 0; i < base.transform.Find("Passenger").transform.childCount; i++)
 				{
@@ -95,14 +95,14 @@ public class ParkingChecker : MonoBehaviour
 		}
 		if (passengerloadcount >= LevelManager.passenger && !parksucces)
 		{
-			passengerloaded = true;
+			passengerLoaded = true;
 			LevelManager.lastparking.SetActive(true);
 		}
 		if (parksucces)
 		{
 			StartCoroutine(characterDelay());
-			parkingobj.transform.GetChild(0).gameObject.SetActive(false);
-			parkingobj.transform.GetChild(1).gameObject.SetActive(false);
+			parkingObject.transform.GetChild(0).gameObject.SetActive(false);
+			parkingObject.transform.GetChild(1).gameObject.SetActive(false);
 			controls.SetActive(false);
 			GetComponent<RigidbodyPause>().pause = true;
 			controllers.BreakButtonPressed();
@@ -120,7 +120,7 @@ public class ParkingChecker : MonoBehaviour
 
 	private IEnumerator characterDelay()
 	{
-		passenger = parkingobj.transform.Find("passenger").gameObject;
+		passenger = parkingObject.transform.Find("passenger").gameObject;
 		passenger.transform.GetChild(count).gameObject.GetComponent<PassengerWalker>().enabled = true;
 		yield return new WaitForSeconds(1f);
 		if (count < 2)
@@ -160,7 +160,7 @@ public class ParkingChecker : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "trafic")
 		{
-			traficspeed = coll.gameObject.GetComponent<NavMeshAgent>().speed;
+			trafficSpeed = coll.gameObject.GetComponent<NavMeshAgent>().speed;
 			coll.gameObject.GetComponent<navMove>().ChangeSpeed(0f);
 		}
 	}
@@ -170,22 +170,22 @@ public class ParkingChecker : MonoBehaviour
 		if (coll.gameObject.tag == "park1")
 		{
 			park1 = true;
-			parkingobj = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+			parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 		}
 		if (coll.gameObject.tag == "park2")
 		{
 			park2 = true;
-			parkingobj = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+			parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 		}
 		if (coll.gameObject.tag == "park3")
 		{
 			park3 = true;
-			parkingobj = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+			parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 		}
 		if (coll.gameObject.tag == "park4")
 		{
 			park4 = true;
-			parkingobj = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+			parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 		}
 	}
 
@@ -193,34 +193,34 @@ public class ParkingChecker : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "trafic")
 		{
-			coll.gameObject.GetComponent<navMove>().ChangeSpeed(traficspeed);
+			coll.gameObject.GetComponent<navMove>().ChangeSpeed(trafficSpeed);
 		}
 		if (coll.gameObject.tag == "park1")
 		{
 			park1 = false;
 			done = false;
-			parkingcomplete = false;
+			parkingComplete = false;
 			parkingbar.GetComponent<Image>().fillAmount = 0f;
 		}
 		if (coll.gameObject.tag == "park2")
 		{
 			park2 = false;
 			done = false;
-			parkingcomplete = false;
+			parkingComplete = false;
 			parkingbar.GetComponent<Image>().fillAmount = 0f;
 		}
 		if (coll.gameObject.tag == "park3")
 		{
 			park3 = false;
 			done = false;
-			parkingcomplete = false;
+			parkingComplete = false;
 			parkingbar.GetComponent<Image>().fillAmount = 0f;
 		}
 		if (coll.gameObject.tag == "park4")
 		{
 			park4 = false;
 			done = false;
-			parkingcomplete = false;
+			parkingComplete = false;
 			parkingbar.GetComponent<Image>().fillAmount = 0f;
 		}
 	}

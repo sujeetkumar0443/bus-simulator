@@ -17,7 +17,7 @@ public class VehicleSelectionController : MonoBehaviour
 
 	public GameObject Buybtn;
 
-	private int vehiclecount;
+	private int vehicleCount;
 
 	public int[] vehicleprices;
 
@@ -139,7 +139,7 @@ public class VehicleSelectionController : MonoBehaviour
 				{
 					Buybtn.SetActive(true);
 					vehiclelock.SetActive(true);
-					vehicleprice.text = vehicleprices[vehiclecount].ToString();
+					vehicleprice.text = vehicleprices[vehicleCount].ToString();
 				}
 			}
 		}
@@ -159,10 +159,10 @@ public class VehicleSelectionController : MonoBehaviour
 	public void BuyBtn(GameObject obj)
 	{
 		sound.ButtonClickSound();
-		if (PlayerPrefs.GetInt("cash") >= vehicleprices[vehiclecount])
+		if (PlayerPrefs.GetInt("cash") >= vehicleprices[vehicleCount])
 		{
-			PlayerPrefs.SetInt("cash", PlayerPrefs.GetInt("cash") - vehicleprices[vehiclecount]);
-			PlayerPrefs.SetInt("vehicle" + vehiclecount + "lock", 1);
+			PlayerPrefs.SetInt("cash", PlayerPrefs.GetInt("cash") - vehicleprices[vehicleCount]);
+			PlayerPrefs.SetInt("vehicle" + vehicleCount + "lock", 1);
 			setcash();
 			SetLock();
 			ConratulationDialoge.SetActive(true);
@@ -237,38 +237,38 @@ public class VehicleSelectionController : MonoBehaviour
 	{
 		sound.ButtonClickSound();
 		obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-		vehicle.transform.GetChild(vehiclecount).gameObject.SetActive(false);
-		if (vehiclecount + 1 <= vehicle.transform.childCount - 1)
+		vehicle.transform.GetChild(vehicleCount).gameObject.SetActive(false);
+		if (vehicleCount + 1 <= vehicle.transform.childCount - 1)
 		{
-			vehiclecount++;
+			vehicleCount++;
 		}
 		else
 		{
-			vehiclecount = 0;
+			vehicleCount = 0;
 		}
-		vehicle.transform.GetChild(vehiclecount).gameObject.SetActive(true);
-		PlayerPrefs.SetInt("vehicle", vehiclecount);
+		vehicle.transform.GetChild(vehicleCount).gameObject.SetActive(true);
+		PlayerPrefs.SetInt("vehicle", vehicleCount);
 		SetLock();
-		SetProperties(vehiclecount);
+		SetProperties(vehicleCount);
 	}
 
 	public void PrevVehicle(GameObject obj)
 	{
 		sound.ButtonClickSound();
 		obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-		vehicle.transform.GetChild(vehiclecount).gameObject.SetActive(false);
-		if (vehiclecount - 1 >= 0)
+		vehicle.transform.GetChild(vehicleCount).gameObject.SetActive(false);
+		if (vehicleCount - 1 >= 0)
 		{
-			vehiclecount--;
+			vehicleCount--;
 		}
 		else
 		{
-			vehiclecount = vehicle.transform.childCount - 1;
+			vehicleCount = vehicle.transform.childCount - 1;
 		}
-		vehicle.transform.GetChild(vehiclecount).gameObject.SetActive(true);
-		PlayerPrefs.SetInt("vehicle", vehiclecount);
+		vehicle.transform.GetChild(vehicleCount).gameObject.SetActive(true);
+		PlayerPrefs.SetInt("vehicle", vehicleCount);
 		SetLock();
-		SetProperties(vehiclecount);
+		SetProperties(vehicleCount);
 	}
 	[System.Obsolete]
 	public void Play(GameObject obj)

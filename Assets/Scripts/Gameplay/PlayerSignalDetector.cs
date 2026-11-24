@@ -8,9 +8,9 @@ public class PlayerSignalDetector : MonoBehaviour
 
 	public float distance1;
 
-	private bool detctSignal;
+	private bool detectedSignal;
 
-	private bool detctSignal1;
+	private bool detectedSignal1;
 
 	private void Start()
 	{
@@ -20,9 +20,9 @@ public class PlayerSignalDetector : MonoBehaviour
 	{
 		if (Physics.Raycast(base.transform.position, base.transform.forward, out hit, distance))
 		{
-			if (hit.collider.tag == "sigstop" && !detctSignal)
+			if (hit.collider.tag == "sigstop" && !detectedSignal)
 			{
-				detctSignal = true;
+				detectedSignal = true;
 				Debug.Log("stop now");
 				if (hit.collider.gameObject.transform.parent.transform.GetChild(0).gameObject.activeSelf)
 				{
@@ -41,13 +41,13 @@ public class PlayerSignalDetector : MonoBehaviour
 		else
 		{
 			Debug.Log("chalta reh");
-			detctSignal = false;
+			detectedSignal = false;
 		}
 		if (Physics.Raycast(base.transform.position, base.transform.forward, out hit, distance1))
 		{
-			if (hit.collider.tag == "sigstop" && !detctSignal1)
+			if (hit.collider.tag == "sigstop" && !detectedSignal1)
 			{
-				detctSignal1 = true;
+				detectedSignal1 = true;
 				if (hit.collider.gameObject.transform.parent.transform.GetChild(0).gameObject.activeSelf)
 				{
 					Debug.Log("gameover");
@@ -62,10 +62,10 @@ public class PlayerSignalDetector : MonoBehaviour
 				}
 			}
 		}
-		else if (!detctSignal)
+		else if (!detectedSignal)
 		{
 			Debug.Log("chalta reh");
-			detctSignal1 = false;
+			detectedSignal1 = false;
 		}
 	}
 }

@@ -16,7 +16,7 @@ public class VehicleManager : MonoBehaviour
 
 	public GameObject buspos;
 
-	private int vehiclenum;
+	private int vehicleIndex;
 
 	public static int vNo;
 
@@ -33,7 +33,7 @@ public class VehicleManager : MonoBehaviour
 	private void Start()
 	{
 		vehicleManager = this;
-		vehiclenum = PlayerPrefs.GetInt("vehicle");
+		vehicleIndex = PlayerPrefs.GetInt("vehicle");
 		selectedVehicle = base.transform.GetChild(PlayerPrefs.GetInt("vehicle")).gameObject;
 		if (!ModeSelectionController.FreeMoode)
 		{
@@ -60,15 +60,15 @@ public class VehicleManager : MonoBehaviour
 
 	public void NextVehicle()
 	{
-		if (vehiclenum < base.transform.childCount - 1)
+		if (vehicleIndex < base.transform.childCount - 1)
 		{
-			vehiclenum++;
+			vehicleIndex++;
 		}
 		else
 		{
-			vehiclenum = 0;
+			vehicleIndex = 0;
 		}
-		selectedVehicle = base.transform.GetChild(vehiclenum).gameObject;
+		selectedVehicle = base.transform.GetChild(vehicleIndex).gameObject;
 		selectedVehicle.SetActive(true);
 		selectedVehicle.tag = "Player";
 		campos.SetDefaultCam(selectedVehicle);

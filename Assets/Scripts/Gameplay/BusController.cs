@@ -21,15 +21,15 @@ public class BusController : MonoBehaviour
 
 	private bool park4;
 	 
-	private float traficspeed;
+	private float trafficSpeed;
 
-	private GameObject parkingobj;
+	private GameObject parkingObject;
 
 	private GameObject stationPassengers;
 
 	public GameObject parkingbar;
 
-	private bool parkingcomplete;
+	private bool parkingComplete;
 
 	private bool parkingCompletedCheck;
 
@@ -143,20 +143,20 @@ public class BusController : MonoBehaviour
 		}
 		else
 		{
-			stationPassengers = parkingobj.transform.Find("passengers").gameObject;
+			stationPassengers = parkingObject.transform.Find("passengers").gameObject;
 		}
 		park1 = false;
 		park2 = false;
 		park3 = false;
 		park4 = false;
-		parkingobj.tag = "Untagged";
-		parkingobj.transform.GetChild(0).gameObject.SetActive(false);
-		parkingobj.transform.GetChild(1).gameObject.SetActive(false);
-		parkingobj.transform.GetChild(0).GetComponent<bl_MiniMapItem>().DestroyItem(true);
-		parkingobj.transform.parent.transform.GetChild(1).gameObject.SetActive(true);
+		parkingObject.tag = "Untagged";
+		parkingObject.transform.GetChild(0).gameObject.SetActive(false);
+		parkingObject.transform.GetChild(1).gameObject.SetActive(false);
+		parkingObject.transform.GetChild(0).GetComponent<bl_MiniMapItem>().DestroyItem(true);
+		parkingObject.transform.parent.transform.GetChild(1).gameObject.SetActive(true);
 		parkingbar.GetComponent<Image>().fillAmount = 0f;
 		parkingbar.SetActive(false);
-		parkingcomplete = false;
+		parkingComplete = false;
 		vehicleControls.SetActive(false);
 		camcontrol.SetDoorCam();
 		selectPassengers();
@@ -279,7 +279,7 @@ public class BusController : MonoBehaviour
 		Debug.Log("Trigger enter in :" + coll.gameObject.tag);
 		if (coll.gameObject.tag == "trafic")
 		{
-			traficspeed = coll.gameObject.GetComponent<NavMeshAgent>().speed;
+			trafficSpeed = coll.gameObject.GetComponent<NavMeshAgent>().speed;
 			coll.gameObject.GetComponent<navMove>().ChangeSpeed(0f);
 		}
 		if (coll.gameObject.tag == "water")
@@ -316,35 +316,35 @@ public class BusController : MonoBehaviour
 			{
 				park1 = true;
 				CheckComplete();
-				parkingobj = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+				parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 			}
 			if (coll.gameObject.tag == "park2" && !park2)
 			{
 				park2 = true;
 				CheckComplete();
-				parkingobj = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+				parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 			}
 			if (coll.gameObject.tag == "park3" && !park3)
 			{
 				park3 = true;
 				CheckComplete();
-				parkingobj = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+				parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 			}
 			if (coll.gameObject.tag == "park4" && !park4)
 			{
 				park4 = true;
 				CheckComplete();
-				parkingobj = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+				parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
 			}
 		}
 	}
 
 	private void CheckComplete()
 	{
-		if (park1 && park2 && park3 && park4 && !parkingcomplete)
+		if (park1 && park2 && park3 && park4 && !parkingComplete)
 		{
 			parkingCompletedCheck = true;
-			parkingcomplete = true;
+			parkingComplete = true;
 			park1 = false;
 			park2 = false;
 			park3 = false;
@@ -359,7 +359,7 @@ public class BusController : MonoBehaviour
 	{
 		if (coll.gameObject.tag == "trafic")
 		{
-			coll.gameObject.GetComponent<navMove>().ChangeSpeed(traficspeed);
+			coll.gameObject.GetComponent<navMove>().ChangeSpeed(trafficSpeed);
 		}
 		if (coll.gameObject.tag == "checkdirection")
 		{
@@ -368,7 +368,7 @@ public class BusController : MonoBehaviour
 		}
 		if (coll.gameObject.tag == "park1")
 		{
-			parkingcomplete = false;
+			parkingComplete = false;
 			park1 = false;
 			StopAllCoroutines();
 			parkingbar.SetActive(false);
@@ -376,7 +376,7 @@ public class BusController : MonoBehaviour
 		}
 		if (coll.gameObject.tag == "park2")
 		{
-			parkingcomplete = false;
+			parkingComplete = false;
 			park2 = false;
 			StopAllCoroutines();
 			parkingbar.SetActive(false);
@@ -384,7 +384,7 @@ public class BusController : MonoBehaviour
 		}
 		if (coll.gameObject.tag == "park3")
 		{
-			parkingcomplete = false;
+			parkingComplete = false;
 			park3 = false;
 			StopAllCoroutines();
 			parkingbar.SetActive(false);
@@ -392,7 +392,7 @@ public class BusController : MonoBehaviour
 		}
 		if (coll.gameObject.tag == "park4")
 		{
-			parkingcomplete = false;
+			parkingComplete = false;
 			park4 = false;
 			StopAllCoroutines();
 			parkingbar.SetActive(false);

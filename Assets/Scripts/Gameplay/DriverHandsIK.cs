@@ -44,27 +44,27 @@ public class DriverHandsIK : MonoBehaviour
 
 	private float test;
 
-	private Quaternion rightHandDefaulRot;
+	private Quaternion rightHandDefaultRot;
 
 	private Vector3 rightHandDefaultPos;
 
-	private Quaternion leftHandDefaulRot;
+	private Quaternion leftHandDefaultRot;
 
 	private Vector3 leftHandDefaultPos;
 
-	private Quaternion rightHandDefaulRot3;
+	private Quaternion rightHandDefaultRot3;
 
 	private Vector3 rightHandDefaultPos3;
 
-	private Quaternion leftHandDefaulRot3;
+	private Quaternion leftHandDefaultRot3;
 
 	private Vector3 leftHandDefaultPos3;
 
-	private Quaternion rightHandDefaulRot5;
+	private Quaternion rightHandDefaultRot5;
 
 	private Vector3 rightHandDefaultPos5;
 
-	private Quaternion leftHandDefaulRot5;
+	private Quaternion leftHandDefaultRot5;
 
 	private Vector3 leftHandDefaultPos5;
 
@@ -73,17 +73,17 @@ public class DriverHandsIK : MonoBehaviour
 	private void Start()
 	{
 		anim = GetComponent<Animator>();
-		rightHandDefaulRot = rightIkTarget.localRotation;
+		rightHandDefaultRot = rightIkTarget.localRotation;
 		rightHandDefaultPos = rightIkTarget.localPosition;
-		leftHandDefaulRot = leftIkTarget.localRotation;
+		leftHandDefaultRot = leftIkTarget.localRotation;
 		leftHandDefaultPos = leftIkTarget.localPosition;
-		rightHandDefaulRot3 = rightIkTarget3.localRotation;
+		rightHandDefaultRot3 = rightIkTarget3.localRotation;
 		rightHandDefaultPos3 = rightIkTarget3.localPosition;
-		leftHandDefaulRot3 = leftIkTarget3.localRotation;
+		leftHandDefaultRot3 = leftIkTarget3.localRotation;
 		leftHandDefaultPos3 = leftIkTarget3.localPosition;
-		rightHandDefaulRot5 = rightIkTarget5.localRotation;
+		rightHandDefaultRot5 = rightIkTarget5.localRotation;
 		rightHandDefaultPos5 = rightIkTarget5.localPosition;
-		leftHandDefaulRot5 = leftIkTarget5.localRotation;
+		leftHandDefaultRot5 = leftIkTarget5.localRotation;
 		leftHandDefaultPos5 = leftIkTarget5.localPosition;
 	}
 
@@ -114,7 +114,7 @@ public class DriverHandsIK : MonoBehaviour
 		{
 			rightHandAngle = 60f;
 		}
-		rightIkTarget.localRotation = rightHandDefaulRot * Quaternion.Euler(new Vector3(0f - rightHandAngle, 0f, rightHandAngle * 0.5f));
+		rightIkTarget.localRotation = rightHandDefaultRot * Quaternion.Euler(new Vector3(0f - rightHandAngle, 0f, rightHandAngle * 0.5f));
 		rightIkTarget.localPosition = rightHandDefaultPos - new Vector3(rightHandAngle * 0.0013f, 0f, 0f);
 		if (steerangle > 60f)
 		{
@@ -151,7 +151,7 @@ public class DriverHandsIK : MonoBehaviour
 		if (steerangle < -190f)
 		{
 			anim.SetBool("rightOpen", false);
-			rightIkTarget5.localRotation = rightHandDefaulRot5 * Quaternion.Euler(new Vector3(0f - rightHandAngle, 0f, rightHandAngle * 0.5f));
+			rightIkTarget5.localRotation = rightHandDefaultRot5 * Quaternion.Euler(new Vector3(0f - rightHandAngle, 0f, rightHandAngle * 0.5f));
 			rightIkTarget5.localPosition = rightHandDefaultPos5 - new Vector3(0f, 0f, rightHandAngle * 0.0016f);
 		}
 		if (steerangle > 200f)
@@ -165,7 +165,7 @@ public class DriverHandsIK : MonoBehaviour
 			{
 				rightHandAngle = -60f;
 			}
-			rightIkTarget.localRotation = rightHandDefaulRot3 * Quaternion.Euler(new Vector3(rightHandAngle, 0f, rightHandAngle * -0.5f));
+			rightIkTarget.localRotation = rightHandDefaultRot3 * Quaternion.Euler(new Vector3(rightHandAngle, 0f, rightHandAngle * -0.5f));
 			rightIkTarget.localPosition = rightHandDefaultPos3 - new Vector3(0f, 0f, rightHandAngle * 0.0013f);
 		}
 		leftHandAngle = steerangle - 40f;
@@ -181,7 +181,7 @@ public class DriverHandsIK : MonoBehaviour
 		{
 			leftHandAngle = 60f;
 		}
-		leftIkTarget.localRotation = leftHandDefaulRot * Quaternion.Euler(new Vector3(0f - leftHandAngle, 0f, leftHandAngle * -0.5f));
+		leftIkTarget.localRotation = leftHandDefaultRot * Quaternion.Euler(new Vector3(0f - leftHandAngle, 0f, leftHandAngle * -0.5f));
 		leftIkTarget.localPosition = leftHandDefaultPos - new Vector3(leftHandAngle * -0.0013f, 0f, 0f);
 		if (steerangle < -60f)
 		{
@@ -218,7 +218,7 @@ public class DriverHandsIK : MonoBehaviour
 		if (steerangle > 190f)
 		{
 			anim.SetBool("leftOpen", false);
-			leftIkTarget5.localRotation = leftHandDefaulRot5 * Quaternion.Euler(new Vector3(0f - leftHandAngle, 0f, leftHandAngle * -0.5f));
+			leftIkTarget5.localRotation = leftHandDefaultRot5 * Quaternion.Euler(new Vector3(0f - leftHandAngle, 0f, leftHandAngle * -0.5f));
 			leftIkTarget5.localPosition = leftHandDefaultPos5 - new Vector3(0f, 0f, leftHandAngle * 0.0016f);
 		}
 		if (steerangle < -200f)
@@ -232,7 +232,7 @@ public class DriverHandsIK : MonoBehaviour
 			{
 				leftHandAngle = 0f;
 			}
-			leftIkTarget.localRotation = leftHandDefaulRot3 * Quaternion.Euler(new Vector3(0f - leftHandAngle, 0f, leftHandAngle * -0.5f));
+			leftIkTarget.localRotation = leftHandDefaultRot3 * Quaternion.Euler(new Vector3(0f - leftHandAngle, 0f, leftHandAngle * -0.5f));
 			leftIkTarget.localPosition = leftHandDefaultPos3 - new Vector3(0f, 0f, leftHandAngle * -0.0013f);
 		}
 	}

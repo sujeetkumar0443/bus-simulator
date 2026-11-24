@@ -4,13 +4,13 @@ public class CameraController : MonoBehaviour
 {
 	public SmoothFollowCamera smooth;
 
-	private int camnum;
+	private int cameraIndex;
 
-	private GameObject campositions;
+	private GameObject cameraPositions;
 
 	public RCC_Camera rccCam;
 
-	private bool rotatecam;
+	private bool rotateCamera;
 
 	private int lastActiveCamMode;
 
@@ -20,14 +20,14 @@ public class CameraController : MonoBehaviour
 
 	public void SetDefaultCam(GameObject obj)
 	{
-		campositions = obj.transform.Find("campos").gameObject;
+		cameraPositions = obj.transform.Find("campos").gameObject;
 	}
 
 	private void RotateCamAround()
 	{
 		while (true)
 		{
-			campositions.transform.GetChild(0).transform.RotateAround(campositions.transform.GetChild(0).transform.position, Vector3.up, 35f * Time.deltaTime);
+			cameraPositions.transform.GetChild(0).transform.RotateAround(cameraPositions.transform.GetChild(0).transform.position, Vector3.up, 35f * Time.deltaTime);
 		}
 	}
 
@@ -44,13 +44,13 @@ public class CameraController : MonoBehaviour
 	{
 		rccCam.gameObject.SetActive(true);
 		rccCam.ChangeCamera(rccCam.lastCameraMode);
-		campositions.transform.GetChild(0).gameObject.SetActive(false);
+		cameraPositions.transform.GetChild(0).gameObject.SetActive(false);
 	}
 
 	public void SetDoorCam()
 	{
 		rccCam.gameObject.SetActive(false);
-		campositions.transform.GetChild(0).gameObject.SetActive(true);
+		cameraPositions.transform.GetChild(0).gameObject.SetActive(true);
 	}
 
 	public void cambtnpressed(GameObject obj)
@@ -65,24 +65,24 @@ public class CameraController : MonoBehaviour
 
 	public void CamBtnClick()
 	{
-		if (camnum < campositions.transform.childCount - 1)
+		if (cameraIndex < cameraPositions.transform.childCount - 1)
 		{
-			camnum++;
+			cameraIndex++;
 		}
 		else
 		{
-			camnum = 0;
+			cameraIndex = 0;
 		}
-		if (camnum == 1)
+		if (cameraIndex == 1)
 		{
 			smooth.gameObject.SetActive(false);
-			campositions.transform.GetChild(camnum).gameObject.SetActive(true);
+			cameraPositions.transform.GetChild(cameraIndex).gameObject.SetActive(true);
 			return;
 		}
 		smooth.distance = 7f;
 		smooth.height = 3f;
 		smooth.gameObject.SetActive(true);
-		campositions.transform.GetChild(1).gameObject.SetActive(false);
-		smooth.target = campositions.transform.GetChild(camnum).transform;
+		cameraPositions.transform.GetChild(1).gameObject.SetActive(false);
+		smooth.target = cameraPositions.transform.GetChild(cameraIndex).transform;
 	}
 }
