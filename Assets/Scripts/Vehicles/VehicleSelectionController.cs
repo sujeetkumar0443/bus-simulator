@@ -78,7 +78,7 @@ namespace BusSimulator
 			}
 			if (PlayerPrefs.GetInt("UnLockAll") == 1)
 			{
-				UnLockAllBtn.SetActive(false);
+				if (UnLockAllBtn != null) UnLockAllBtn.SetActive(false);
 				CheckIAP();
 			}
 			if (Advertisements.Instance.IsRewardVideoAvailable())
@@ -119,7 +119,7 @@ namespace BusSimulator
 				Buybtn.SetActive(false);
 				vehiclelock.SetActive(false);
 				cashWaringDialoge.SetActive(false);
-				UnLockAllBtn.SetActive(false);
+				if (UnLockAllBtn != null) UnLockAllBtn.SetActive(false);
 				ConratulationDialoge.SetActive(true);
 				PlayerPrefs.SetInt("UnLockAll", 1);
 				ConratulationDialoge_text.text = "Congratulation! you unlocked all buses succesfully.";
@@ -128,22 +128,16 @@ namespace BusSimulator
 
 		private void SetLock()
 		{
-			for (int i = 0; i < vehicle.transform.childCount; i++)
+			if (PlayerPrefs.GetInt("vehicle" + vehicleCount + "lock") == 1)
 			{
-				if (vehicle.transform.GetChild(i).gameObject.activeSelf)
-				{
-					if (PlayerPrefs.GetInt("vehicle" + i + "lock") == 1)
-					{
-						Buybtn.SetActive(false);
-						vehiclelock.SetActive(false);
-					}
-					else
-					{
-						Buybtn.SetActive(true);
-						vehiclelock.SetActive(true);
-						vehicleprice.text = vehicleprices[vehicleCount].ToString();
-					}
-				}
+				Buybtn.SetActive(false);
+				vehiclelock.SetActive(false);
+			}
+			else
+			{
+				Buybtn.SetActive(true);
+				vehiclelock.SetActive(true);
+				vehicleprice.text = vehicleprices[vehicleCount].ToString();
 			}
 		}
 
