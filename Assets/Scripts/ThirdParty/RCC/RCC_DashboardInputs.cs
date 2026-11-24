@@ -172,7 +172,7 @@ public class RCC_DashboardInputs : MonoBehaviour
 			{
 				KMHNeedleRotation = RCC_SceneManager.Instance.activePlayerVehicle.speed * 0.62f;
 			}
-			KMHNeedle.transform.localEulerAngles = new Vector3(0f, 0f, 135f - Mathf.Clamp(KMHNeedleRotation, 0f, 120f) * 2.25f);
+			KMHNeedle.transform.localEulerAngles = new Vector3(0f, 0f, 135f - Mathf.Clamp(KMHNeedleRotation, 0f, 240f) * 1.125f);
 		}
 		if ((bool)turboNeedle)
 		{
