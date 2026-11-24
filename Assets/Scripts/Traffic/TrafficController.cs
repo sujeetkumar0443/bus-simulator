@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TrafficControler : MonoBehaviour
+public class TrafficController : MonoBehaviour
 {
 	private GameObject instance;
 

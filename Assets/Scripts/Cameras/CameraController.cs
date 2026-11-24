@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-	public SmoothFollow1 smooth;
+	public SmoothFollowCamera smooth;
 
 	private int camnum;
 

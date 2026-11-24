@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class rotateTyres : MonoBehaviour
+public class WheelRotator : MonoBehaviour
 {
 	public float speed = 50f;
 

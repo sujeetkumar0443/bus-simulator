@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyCars : MonoBehaviour
+public class EnemyCar : MonoBehaviour
 {
 	public int EnemyHealth = 5;
 

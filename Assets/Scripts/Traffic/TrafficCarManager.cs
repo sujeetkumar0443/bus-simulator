@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TraficCarManager : MonoBehaviour
+public class TrafficCarManager : MonoBehaviour
 {
 	private void Start()
 	{
