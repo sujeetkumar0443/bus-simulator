@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour
 
 	public NavTargetController pathTarget;
 
-	private IEnumerator objectivedisappear()
+	private IEnumerator ObjectiveDisappear()
 	{
 		yield return new WaitForSeconds(2f);
 	}
@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour
 		if (!ModeSelectionController.FreeMoode)
 		{
 			objectivedialoge.SetActive(true);
-			StartCoroutine(objectivedisappear());
+			StartCoroutine(ObjectiveDisappear());
 			base.transform.GetChild(LevelNumber - 1).gameObject.SetActive(true);
 			TotalsParking = 2;
 		}
@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
 		{
 			objectivedialoge.SetActive(true);
 			objectivedialoge.transform.GetChild(0).transform.GetChild(1).GetComponent<Text>().text = "Enjoy the free ride and improve your driving skills.";
-			StartCoroutine(objectivedisappear());
+			StartCoroutine(ObjectiveDisappear());
 		}
 	}
 }

@@ -53,12 +53,12 @@ public class CameraController : MonoBehaviour
 		cameraPositions.transform.GetChild(0).gameObject.SetActive(true);
 	}
 
-	public void cambtnpressed(GameObject obj)
+	public void CameraButtonPressed(GameObject obj)
 	{
 		obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 	}
 
-	public void cambtnUnpressed(GameObject obj)
+	public void CameraButtonReleased(GameObject obj)
 	{
 		obj.transform.localScale = new Vector3(1f, 1f, 1f);
 	}

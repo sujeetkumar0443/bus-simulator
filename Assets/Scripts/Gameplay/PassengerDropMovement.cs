@@ -5,10 +5,10 @@ public class PassengerDropMovement : MonoBehaviour
 {
 	private void Start()
 	{
-		StartCoroutine(passengerDrop());
+		StartCoroutine(DropPassenger());
 	}
 
-	private IEnumerator passengerDrop()
+	private IEnumerator DropPassenger()
 	{
 		while (true)
 		{

@@ -84,7 +84,7 @@ public class ParkingChecker : MonoBehaviour
 				GetComponent<VehicleAudio>().enabled = false;
 				controllers.BreakButtonPressed();
 				campos.RotateCam(base.gameObject);
-				StartCoroutine(gamecolpete());
+				StartCoroutine(GameComplete());
 			}
 			else
 			{
@@ -130,19 +130,19 @@ public class ParkingChecker : MonoBehaviour
 		}
 		else
 		{
-			StartCoroutine(parkaccessfalse());
+			StartCoroutine(ParkAccessFalse());
 			StopCoroutine("characterDelay");
 			count = 0;
 		}
 	}
 
-	private IEnumerator parkaccessfalse()
+	private IEnumerator ParkAccessFalse()
 	{
 		yield return new WaitForSeconds(2f);
 		parksucces = false;
 	}
 
-	private IEnumerator gamecolpete()
+	private IEnumerator GameComplete()
 	{
 		yield return new WaitForSeconds(1.5f);
 		gamecond.LevelComplete();

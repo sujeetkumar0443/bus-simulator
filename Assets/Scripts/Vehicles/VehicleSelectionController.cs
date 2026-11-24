@@ -67,7 +67,7 @@ public class VehicleSelectionController : MonoBehaviour
 	{
 		PlayerPrefs.SetInt("vehicle", 0);
 		PlayerPrefs.SetInt("vehicle0lock", 1);
-		setcash();
+		SetCash();
 		SetLock();
 		SetProperties(0);
 		if (!PlayerPrefs.HasKey("UnLockAll"))
@@ -91,7 +91,7 @@ public class VehicleSelectionController : MonoBehaviour
 		Advertisements.Instance.ShowInterstitial();
 	}
 
-	private void setcash()
+	private void SetCash()
 	{
 		cashtext.text = PlayerPrefs.GetInt("cash", 0).ToString();
 	}
@@ -163,7 +163,7 @@ public class VehicleSelectionController : MonoBehaviour
 		{
 			PlayerPrefs.SetInt("cash", PlayerPrefs.GetInt("cash") - vehicleprices[vehicleCount]);
 			PlayerPrefs.SetInt("vehicle" + vehicleCount + "lock", 1);
-			setcash();
+			SetCash();
 			SetLock();
 			ConratulationDialoge.SetActive(true);
 			ConratulationDialoge_text.text = "Congratulation! you unlocked bus succesfully.";
@@ -215,7 +215,7 @@ public class VehicleSelectionController : MonoBehaviour
 		}
 	}
 
-	private void resetBars()
+	private void ResetBars()
 	{
 		SpeedBar.fillAmount = 0f;
 		engineBar.fillAmount = 0f;
@@ -226,7 +226,7 @@ public class VehicleSelectionController : MonoBehaviour
 	private void SetProperties(int vehicleno)
 	{
 		StopAllCoroutines();
-		resetBars();
+		ResetBars();
 		StartCoroutine(SpeedBarfill(vehicleno));
 		StartCoroutine(EngineBarFill(vehicleno));
 		StartCoroutine(SteerBarFill(vehicleno));
@@ -299,11 +299,11 @@ public class VehicleSelectionController : MonoBehaviour
 		{
 			AdManager.Instance.ShowRewardedVideo();
 			PlayerPrefs.SetInt("cash", PlayerPrefs.GetInt("cash") + 500);
-			setcash();
+			SetCash();
 		}
 	}
 
-	private void resetVeriable()
+	private void ResetVariables()
 	{
 		 
 	}

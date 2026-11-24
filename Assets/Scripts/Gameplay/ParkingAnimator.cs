@@ -5,10 +5,10 @@ public class ParkingAnimator : MonoBehaviour
 {
 	private void Start()
 	{
-		StartCoroutine(animate());
+		StartCoroutine(Animate());
 	}
 
-	private IEnumerator animate()
+	private IEnumerator Animate()
 	{
 		base.transform.GetChild(0).gameObject.SetActive(false);
 		base.transform.GetChild(1).gameObject.SetActive(true);
@@ -26,6 +26,6 @@ public class ParkingAnimator : MonoBehaviour
 		base.transform.GetChild(1).gameObject.SetActive(false);
 		base.transform.GetChild(2).gameObject.SetActive(true);
 		yield return new WaitForSeconds(0.5f);
-		StartCoroutine(animate());
+		StartCoroutine(Animate());
 	}
 }

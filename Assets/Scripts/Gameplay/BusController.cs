@@ -159,7 +159,7 @@ public class BusController : MonoBehaviour
 		parkingComplete = false;
 		vehicleControls.SetActive(false);
 		camcontrol.SetDoorCam();
-		selectPassengers();
+		SelectPassengers();
 		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 		controller.ResetInputs();
 		Invoke("miniMapDelay_Off", 1.5f);
@@ -180,7 +180,7 @@ public class BusController : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	private void selectPassengers()
+	private void SelectPassengers()
 	{
 		Debug.Log("vehicle no : " + VehicleManager.vNo);
 		if (passengers.transform.childCount > 0)

@@ -25,17 +25,17 @@ public class TypewriterText : MonoBehaviour
 	public void StartTyping(string s)
 	{
 		line = s.ToCharArray();
-		StartCoroutine(startType(line));
+		StartCoroutine(StartType(line));
 	}
 
-	private IEnumerator startType(char[] s)
+	private IEnumerator StartType(char[] s)
 	{
 		yield return new WaitForSeconds(textSpeed);
 		if (count < s.Length)
 		{
 			text.text += s[count];
 			count++;
-			StartCoroutine(startType(s));
+			StartCoroutine(StartType(s));
 		}
 		else
 		{

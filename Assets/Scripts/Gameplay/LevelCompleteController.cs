@@ -29,7 +29,7 @@ public class LevelCompleteController : MonoBehaviour
 		}
 	}
 
-	public IEnumerator gameFail()
+	public IEnumerator GameFail()
 	{
 		yield return new WaitForSeconds(1.2f);
 		LevelFail();

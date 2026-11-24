@@ -126,7 +126,7 @@ public class MapCanvasController : MonoBehaviour
 		float num2 = maxRadarDistance * scale;
 		if (marker.isActive)
 		{
-			float num3 = distanceToPlayer(marker.getPosition());
+			float num3 = DistanceToPlayer(marker.getPosition());
 			float num4 = 1f;
 			if (num3 > num)
 			{
@@ -182,7 +182,7 @@ public class MapCanvasController : MonoBehaviour
 		}
 	}
 
-	private float distanceToPlayer(Vector3 other)
+	private float DistanceToPlayer(Vector3 other)
 	{
 		return Vector2.Distance(new Vector2(playerTransform.position.x, playerTransform.position.z), new Vector2(other.x, other.z));
 	}
