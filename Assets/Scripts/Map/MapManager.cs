@@ -14,7 +14,7 @@ public class MapManager : MonoBehaviour
 
 	public GameObject mapHint;
 
-	public void zoom()
+	public void Zoom()
 	{
 		mapCamera.SetActive(true);
 		MainCamera.SetActive(false);

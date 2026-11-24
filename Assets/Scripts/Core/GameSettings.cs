@@ -100,7 +100,7 @@ public class GameSettings : MonoBehaviour
 		}
 	}
 
-	public void soundNext()
+	public void SoundNext()
 	{
 		Debug.Log("sound pref in fun: " + PlayerPrefs.GetInt("sounds"));
 		if (PlayerPrefs.GetInt("sounds") == 1)

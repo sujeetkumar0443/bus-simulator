@@ -26,7 +26,7 @@ public class MainMenuController : MonoBehaviour
 		}
 	}
 
-	public void buttonUnPress(GameObject obj)
+	public void ButtonReleased(GameObject obj)
 	{
 		obj.transform.localScale = new Vector3(1f, 1f, 1f);
 	}
@@ -43,24 +43,24 @@ public class MainMenuController : MonoBehaviour
 	 
 	}
 
-	public void feedBack(GameObject obj)
+	public void Feedback(GameObject obj)
 	{
 		sound.ButtonClickSound();
 		 
 	}
 
-	public void yesButton()
+	public void YesButton()
 	{
 		Application.Quit();
 	}
 
-	public void exitButton()
+	public void ExitButton()
 	{
 		exitDialogue.SetActive(true);
 		AdManager.Instance.ShowInterstitial();
 	}
 
-	public void noButton()
+	public void NoButton()
 	{
 		exitDialogue.SetActive(false);
 	}

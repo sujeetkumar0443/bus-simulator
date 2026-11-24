@@ -95,7 +95,7 @@ public class PassengerController : MonoBehaviour
 		}
 	}
 
-	public void StopAndTurnArround()
+	public void StopAndTurnAround()
 	{
 		if (exitedPerson)
 		{

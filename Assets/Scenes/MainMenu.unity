@@ -3860,7 +3860,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 310}
         m_TargetAssemblyTypeName: 
-        m_MethodName: feedBack
+        m_MethodName: Feedback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3919,7 +3919,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 310}
           m_TargetAssemblyTypeName: 
-          m_MethodName: feedBack
+          m_MethodName: Feedback
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 14}
@@ -3935,7 +3935,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 310}
           m_TargetAssemblyTypeName: 
-          m_MethodName: buttonUnPress
+          m_MethodName: ButtonReleased
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 14}
@@ -4021,7 +4021,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 310}
         m_TargetAssemblyTypeName: 
-        m_MethodName: noButton
+        m_MethodName: NoButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4295,7 +4295,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 310}
         m_TargetAssemblyTypeName: 
-        m_MethodName: exitButton
+        m_MethodName: ExitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4467,7 +4467,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 313}
         m_TargetAssemblyTypeName: 
-        m_MethodName: soundNext
+        m_MethodName: SoundNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4714,7 +4714,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 310}
           m_TargetAssemblyTypeName: 
-          m_MethodName: buttonUnPress
+          m_MethodName: ButtonReleased
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 31}
@@ -5112,7 +5112,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 310}
         m_TargetAssemblyTypeName: 
-        m_MethodName: yesButton
+        m_MethodName: YesButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5292,7 +5292,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 313}
         m_TargetAssemblyTypeName: 
-        m_MethodName: soundNext
+        m_MethodName: SoundNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5573,7 +5573,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 310}
           m_TargetAssemblyTypeName: 
-          m_MethodName: buttonUnPress
+          m_MethodName: ButtonReleased
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 57}

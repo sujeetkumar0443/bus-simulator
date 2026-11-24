@@ -150,7 +150,7 @@ public class VehicleSelectionController : MonoBehaviour
 		lockedDialoge.SetActive(true);
 	}
 
-	public void lockedOKBtn(GameObject obj)
+	public void LockedOkButton(GameObject obj)
 	{
 		sound.ButtonClickSound();
 		lockedDialoge.SetActive(false);

@@ -469,7 +469,7 @@ public class GameplayUIController : MonoBehaviour
         SpeedUppassengers.SetActive(true);
     }
 
-    public void feedBack(GameObject obj)
+    public void Feedback(GameObject obj)
     {
         obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
         sound.ButtonClickSound();
