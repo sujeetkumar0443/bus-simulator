@@ -220,7 +220,7 @@ public class RCC_UIDashboardDisplay : MonoBehaviour
 		}
 		if ((bool)Headlights)
 		{
-			Headlights.color = ((!inputs.Headlights) ? Color.white : Color.green);
+			Headlights.color = ((!inputs.Headlights) ? new Color(0.55f, 0.55f, 0.55f) : Color.white);
 		}
 		if ((bool)heatIndicator)
 		{
@@ -239,20 +239,20 @@ public class RCC_UIDashboardDisplay : MonoBehaviour
 			switch (inputs.indicators)
 			{
 			case RCC_CarControllerV3.IndicatorsOn.Left:
-				leftIndicator.color = new Color(1f, 0.5f, 0f);
-				rightIndicator.color = new Color(0.5f, 0.25f, 0f);
+				leftIndicator.color = Color.white;
+				rightIndicator.color = new Color(0.45f, 0.45f, 0.45f);
 				break;
 			case RCC_CarControllerV3.IndicatorsOn.Right:
-				leftIndicator.color = new Color(0.5f, 0.25f, 0f);
-				rightIndicator.color = new Color(1f, 0.5f, 0f);
+				leftIndicator.color = new Color(0.45f, 0.45f, 0.45f);
+				rightIndicator.color = Color.white;
 				break;
 			case RCC_CarControllerV3.IndicatorsOn.All:
-				leftIndicator.color = new Color(1f, 0.5f, 0f);
-				rightIndicator.color = new Color(1f, 0.5f, 0f);
+				leftIndicator.color = Color.white;
+				rightIndicator.color = Color.white;
 				break;
 			case RCC_CarControllerV3.IndicatorsOn.Off:
-				leftIndicator.color = new Color(0.5f, 0.25f, 0f);
-				rightIndicator.color = new Color(0.5f, 0.25f, 0f);
+				leftIndicator.color = new Color(0.45f, 0.45f, 0.45f);
+				rightIndicator.color = new Color(0.45f, 0.45f, 0.45f);
 				break;
 			}
 		}
