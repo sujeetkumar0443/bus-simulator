@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!43 &4300000
+Mesh:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: house_193
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 54
+    topology: 0
+    firstVertex: 0
+    vertexCount: 34
+    localAABB:
+      m_Center: {x: -3.6311035, y: 2.2683382, z: -3.760128}
+      m_Extent: {x: 11.039215, y: 7.596225, z: 11.1706505}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: []
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexBuffer: 00000100020002000300000004000500060007000400060008000700060009000a000b000b000c0009000d000e000f0010000d000f00110010000f001200130014001400150012001600170018001800190016001a001b001c001d001b001a001e001f00200021001f001e00
+  m_Skin: []
+  m_VertexData:
+    m_CurrentChannels: 139
+    m_VertexCount: 34
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 32
+      format: 0
+      dimension: 4
+    m_DataSize: 1632
+    _typelessdata: 001b943f40d51d410056ba3ff8813d3efd61773f700137be65187e3f635e6b3d6f2433bf6fb8833e2d9b2a3f000080bf400fed40c8f6ad4000704b3ed951ea3eb781453fb647e2be5efa673fab47a83b07aa0fbf69dd223fc18a073f000080bfc078e6c0c8f6ad4078e46ec1cf51ea3ebb81453fb547e2be3efa673f5c8fa93e4c7c0dbfd8de223fdace093f000080bf00b70dc140d51d41f0a00ec11aa155be52ff743f974c4e3e63307e3ff6ca903e7c572cbf747494bebf232e3f000080bf400fed400c7eaac000704b3e19d5313f00000000b026383fff6de33e569fda3db02638bf0000000019d5313f000080bf400fed40c8f6ad4000704b3e1ed5313f00000000aa26383fff6de33e89c8b43eaa2638bf000000001ed5313f000080bf00e76240c8f6ad4000737b4013d5313f00000000b526383f583e103f89c8b43eb52638bf0000000013d5313f000080bf00c075bd0c7eaac00023ed400ed5313f00000000ba26383f0f012d3f569fda3dba2638bf000000000ed5313f000080bf00c075bdc8f6ad400023ed4008d5313f00000000bf26383f0f012d3f89c8b43ebf2638bf0000000008d5313f000080bfa0b96ac1c8f6ad407001f7c0ae2638bf000000001bd5313fefb7e63e89c8b43e1bd531bf00000000ae2638bf000080bfa0b96ac10c7eaac07001f7c0ae2638bf000000001bd5313fefb7e63e569fda3d1bd531bf00000000ae2638bf000080bf00c075bd0c7eaac00023ed40ae2638bf000000001bd5313f6b81b23b569fda3d1bd531bf00000000ae2638bf000080bf00c075bdc8f6ad400023ed40ae2638bf000000001bd5313f6b81b23b89c8b43e1bd531bf00000000ae2638bf000080bfa0b96ac10c7eaac07001f7c049d531bf00000000812638bfff6de33e569fda3d8126383f0000000049d531bf000080bfa0b96ac1c8f6ad407001f7c049d531bf00000000812638bfff6de33e89c8b43e8126383f0000000049d531bf000080bf400a31c1c8f6ad40803533c12ed531bf000000009c2638bf753c103f89c8b43e9c26383f000000002ed531bf000080bfc078e6c00c7eaac078e46ec11fd531bf00000000a92638bf0f012d3f569fda3da926383f000000001fd531bf000080bfc078e6c0c8f6ad4078e46ec112d531bf00000000b62638bf0f012d3f89c8b43eb626383f0000000012d531bf000080bf400fed40c8f6ad4000704b3ea226383f0000000027d531bfefb7e63e89c8b43e27d5313f00000000a226383f000080bf400fed400c7eaac000704b3ea226383f0000000027d531bfefb7e63e569fda3d27d5313f00000000a226383f000080bfc078e6c00c7eaac078e46ec1a226383f0000000027d531bf6b81b23b569fda3d27d5313f00000000a226383f000080bfc078e6c0c8f6ad4078e46ec1a226383f0000000027d531bf6b81b23b89c8b43e27d5313f00000000a226383f000080bf00c075bdc8f6ad400023ed4036dbf3be19d93f3f617deb3e5234683fcb47a83b223b093fa77f293f101106bf0000803f001b943f40d51d410056ba3ff8813d3efd61773f700137be65187e3f635e6b3d29902d3f28af83be264930bf0000803f00b70dc140d51d41f0a00ec11aa155be52ff743f974c4e3e63307e3ff6ca903e415c313f9d7c943eb60429bf0000803fa0b96ac1c8f6ad407001f7c080dbf3befad83f3f767deb3e2f34683f5c8fa93e99880b3f947e293f84ac03bf0000803f00b70dc140d51d41f0a00ec1ec7810bfb745153fc29a15bf324f7e3f7c958d3e4598c93e2ef34f3f174cdc3e000080bf400a31c1c8f6ad40803533c1ec7810bfb745153fc29a15bfc09b683f086c8e3e8895c93e28f34f3faf4edc3e000080bfa0b96ac1c8f6ad407001f7c0ec7810bfb745153fc29a15bfba9b683f4069bb3e630cc93ee5f14f3f9cd0dc3e000080bfc078e6c0c8f6ad4078e46ec1bf7810bfb745153fec9a15bfc79b683f964f2b3e2502ca3e13f44f3fa1e7db3e000080bf001b943f40d51d410056ba3f45770c3febfe1c3fed74113fce307e3fd6e48d3e26f7d3be422e4a3f26bfe7be000080bf00e76240c8f6ad4000737b4045770c3febfe1c3fed74113f5b7d683feacc8e3eeff9d3be492e4a3f84bce7be000080bf400fed40c8f6ad4000704b3e45770c3febfe1c3fed74113f567d683f5043bf3ead7bd3be192d4a3fe233e8be000080bf00c075bdc8f6ad400023ed4033770c3feafe1c3fff74113f627d683f6528343ee66dd4be4c2f4a3fb14ee7be000080bf
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data:
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data:
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data:
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data:
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data:
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data:
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data:
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data:
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data:
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data:
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: -3.6311035, y: 2.2683382, z: -3.760128}
+    m_Extent: {x: 11.039215, y: 7.596225, z: 11.1706505}
+  m_MeshUsageFlags: 4
+  m_BakedConvexCollisionMesh:
+  m_BakedTriangleCollisionMesh:
+  m_MeshOptimized: 1

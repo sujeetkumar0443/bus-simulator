@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a5d37d249fda547bb774295fd95776, type: 3}
+  m_Name: ChartboostSettings
+  m_EditorClassIdentifier:
+  iOSAppId:
+  iOSAppSecret:
+  androidAppId: 5c10b26f2d722165cd474ee9
+  androidAppSecret: a76281ceac8269169ffde387b3129ffd707adcb5
+  amazonAppId:
+  amazonAppSecret:
+  isLoggingEnabled: 0
+  androidPlatformLabels:
+  - Google Play
+  - Amazon
+  selectedAndroidPlatformIndex: 0

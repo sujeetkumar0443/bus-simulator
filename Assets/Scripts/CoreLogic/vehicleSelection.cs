@@ -1,0 +1,322 @@
+using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class vehicleSelection : MonoBehaviour
+{
+	public GameObject vehiclelock;
+
+	public GameObject lockedDialoge;
+
+	public GameObject vehicle;
+
+	public Text cashtext;
+
+	public Text vehicleprice;
+
+	public GameObject Buybtn;
+
+	private int vehiclecount;
+
+	public int[] vehicleprices;
+
+	public SoundManager sound;
+
+	public string UnlockAllBuses_Product_id;
+
+	public GameObject cashWaringDialoge;
+
+	public GameObject ConratulationDialoge;
+
+	public Text ConratulationDialoge_text;
+
+	public Image SpeedBar;
+
+	public Image engineBar;
+
+	public Image SteerBar;
+
+	public Image Powerbar;
+
+	public float[] SpeedBarValue;
+
+	public float[] EngineBarValue;
+
+	public float[] SteerBarValue;
+
+	public float[] PowerBarValue;
+
+	public GameObject UnLockAllBtn;
+
+	public GameObject[] rewardedVideoBtn;
+ 
+	 
+
+	private void OnEnable()
+	{
+	 
+	}
+
+	private void OnDisable()
+	{
+		 
+	}
+
+	private void Start()
+	{
+		PlayerPrefs.SetInt("vehicle", 0);
+		PlayerPrefs.SetInt("vehicle0lock", 1);
+		setcash();
+		SetLock();
+		SetProperties(0);
+		if (!PlayerPrefs.HasKey("UnLockAll"))
+		{
+			PlayerPrefs.SetInt("UnLockAll", 0);
+		}
+		if (PlayerPrefs.GetInt("UnLockAll") == 1)
+		{
+			UnLockAllBtn.SetActive(false);
+			CheckIAP();
+		}
+		if (Advertisements.Instance.IsRewardVideoAvailable())
+		{
+			for (int i = 0; i < rewardedVideoBtn.Length; i++)
+			{
+				rewardedVideoBtn[i].SetActive(true);
+			}
+		}
+		
+		 
+		Advertisements.Instance.ShowInterstitial();
+	}
+
+	private void setcash()
+	{
+		cashtext.text = PlayerPrefs.GetInt("cash", 0).ToString();
+	}
+
+	private void CheckIAP()
+	{
+		for (int i = 0; i < vehicle.transform.childCount; i++)
+		{
+			PlayerPrefs.SetInt("vehicle" + i + "lock", 1);
+		}
+		Buybtn.SetActive(false);
+		vehiclelock.SetActive(false);
+	}
+
+	private void UnLockAllBuses(string name, string id)
+	{
+		if (id == UnlockAllBuses_Product_id)
+		{
+			for (int i = 0; i < vehicle.transform.childCount; i++)
+			{
+				PlayerPrefs.SetInt("vehicle" + i + "lock", 1);
+			}
+			Buybtn.SetActive(false);
+			vehiclelock.SetActive(false);
+			cashWaringDialoge.SetActive(false);
+			UnLockAllBtn.SetActive(false);
+			ConratulationDialoge.SetActive(true);
+			PlayerPrefs.SetInt("UnLockAll", 1);
+			ConratulationDialoge_text.text = "Congratulation! you unlocked all buses succesfully.";
+		}
+	}
+
+	private void SetLock()
+	{
+		for (int i = 0; i < vehicle.transform.childCount; i++)
+		{
+			if (vehicle.transform.GetChild(i).gameObject.activeSelf)
+			{
+				if (PlayerPrefs.GetInt("vehicle" + i + "lock") == 1)
+				{
+					Buybtn.SetActive(false);
+					vehiclelock.SetActive(false);
+				}
+				else
+				{
+					Buybtn.SetActive(true);
+					vehiclelock.SetActive(true);
+					vehicleprice.text = vehicleprices[vehiclecount].ToString();
+				}
+			}
+		}
+	}
+
+	public void Locked()
+	{
+		lockedDialoge.SetActive(true);
+	}
+
+	public void lockedOKBtn(GameObject obj)
+	{
+		sound.ButtonClickSound();
+		lockedDialoge.SetActive(false);
+	}
+
+	public void BuyBtn(GameObject obj)
+	{
+		sound.ButtonClickSound();
+		if (PlayerPrefs.GetInt("cash") >= vehicleprices[vehiclecount])
+		{
+			PlayerPrefs.SetInt("cash", PlayerPrefs.GetInt("cash") - vehicleprices[vehiclecount]);
+			PlayerPrefs.SetInt("vehicle" + vehiclecount + "lock", 1);
+			setcash();
+			SetLock();
+			ConratulationDialoge.SetActive(true);
+			ConratulationDialoge_text.text = "Congratulation! you unlocked bus succesfully.";
+		}
+		else
+		{
+			cashWaringDialoge.SetActive(true);
+		}
+	}
+
+	public void ButtonReleased(GameObject btn)
+	{
+		btn.transform.localScale = new Vector3(1f, 1f, 1f);
+	}
+
+	private IEnumerator SpeedBarfill(int vehicleno)
+	{
+		while (SpeedBar.fillAmount <= SpeedBarValue[vehicleno])
+		{
+			yield return new WaitForSeconds(0f);
+			SpeedBar.fillAmount += 0.02f;
+		}
+	}
+
+	private IEnumerator EngineBarFill(int vehicleno)
+	{
+		while (engineBar.fillAmount <= EngineBarValue[vehicleno])
+		{
+			yield return new WaitForSeconds(0f);
+			engineBar.fillAmount += 0.02f;
+		}
+	}
+
+	private IEnumerator SteerBarFill(int vehicleno)
+	{
+		while (SteerBar.fillAmount <= SteerBarValue[vehicleno])
+		{
+			yield return new WaitForSeconds(0f);
+			SteerBar.fillAmount += 0.02f;
+		}
+	}
+
+	private IEnumerator PowerBarFill(int vehicleno)
+	{
+		while (Powerbar.fillAmount <= PowerBarValue[vehicleno])
+		{
+			yield return new WaitForSeconds(0f);
+			Powerbar.fillAmount += 0.02f;
+		}
+	}
+
+	private void resetBars()
+	{
+		SpeedBar.fillAmount = 0f;
+		engineBar.fillAmount = 0f;
+		SteerBar.fillAmount = 0f;
+		Powerbar.fillAmount = 0f;
+	}
+
+	private void SetProperties(int vehicleno)
+	{
+		StopAllCoroutines();
+		resetBars();
+		StartCoroutine(SpeedBarfill(vehicleno));
+		StartCoroutine(EngineBarFill(vehicleno));
+		StartCoroutine(SteerBarFill(vehicleno));
+		StartCoroutine(PowerBarFill(vehicleno));
+	}
+
+	public void NextVehicle(GameObject obj)
+	{
+		sound.ButtonClickSound();
+		obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+		vehicle.transform.GetChild(vehiclecount).gameObject.SetActive(false);
+		if (vehiclecount + 1 <= vehicle.transform.childCount - 1)
+		{
+			vehiclecount++;
+		}
+		else
+		{
+			vehiclecount = 0;
+		}
+		vehicle.transform.GetChild(vehiclecount).gameObject.SetActive(true);
+		PlayerPrefs.SetInt("vehicle", vehiclecount);
+		SetLock();
+		SetProperties(vehiclecount);
+	}
+
+	public void PrevVehicle(GameObject obj)
+	{
+		sound.ButtonClickSound();
+		obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+		vehicle.transform.GetChild(vehiclecount).gameObject.SetActive(false);
+		if (vehiclecount - 1 >= 0)
+		{
+			vehiclecount--;
+		}
+		else
+		{
+			vehiclecount = vehicle.transform.childCount - 1;
+		}
+		vehicle.transform.GetChild(vehiclecount).gameObject.SetActive(true);
+		PlayerPrefs.SetInt("vehicle", vehiclecount);
+		SetLock();
+		SetProperties(vehiclecount);
+	}
+	[System.Obsolete]
+	public void Play(GameObject obj)
+	{
+		sound.ButtonClickSound();
+		obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+		Debug.Log("vehicle no : " + PlayerPrefs.GetInt("vehicle"));
+		if (!vehiclelock.activeSelf)
+		{
+			Application.LoadLevel(Application.loadedLevel + 1);
+		}
+		else
+		{
+			Locked();
+		}
+	}
+	[System.Obsolete]
+	public void Back(GameObject obj)
+	{
+		sound.ButtonClickSound();
+		obj.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+		Application.LoadLevel(Application.loadedLevel - 1);
+	}
+
+	public void WatchVideo()
+	{
+		if (Advertisements.Instance.IsRewardVideoAvailable())
+		{
+			AdManager.Instance.ShowRewardedVideo();
+			PlayerPrefs.SetInt("cash", PlayerPrefs.GetInt("cash") + 500);
+			setcash();
+		}
+	}
+
+	private void resetVeriable()
+	{
+		 
+	}
+
+	public void CashWarningBack()
+	{
+		sound.ButtonClickSound();
+		cashWaringDialoge.SetActive(false);
+	}
+
+	public void Congrats_Ok()
+	{
+		sound.ButtonClickSound();
+		ConratulationDialoge.SetActive(false);
+	}
+}
