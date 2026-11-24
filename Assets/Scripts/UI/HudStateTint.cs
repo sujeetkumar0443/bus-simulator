@@ -29,12 +29,11 @@ namespace BusSimulator
 			{
 				return;
 			}
-			RCC_SceneManager manager = RCC_SceneManager.Instance;
-			if (manager == null || manager.activePlayerVehicle == null)
+			RCC_CarControllerV3 car = PlayerBus.Get();
+			if (car == null)
 			{
 				return;
 			}
-			RCC_CarControllerV3 car = manager.activePlayerVehicle;
 			bool on = false;
 			bool blink = false;
 			switch (kind)

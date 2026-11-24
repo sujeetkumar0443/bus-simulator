@@ -157838,6 +157838,7 @@ GameObject:
   - component: {fileID: 83283}
   - component: {fileID: 83282}
   - component: {fileID: 900000249}
+  - component: {fileID: 900000254}
   m_Layer: 5
   m_Name: Left Indicator Button
   m_TagString: Untagged
@@ -217239,6 +217240,7 @@ GameObject:
   - component: {fileID: 83389}
   - component: {fileID: 900000247}
   - component: {fileID: 900000253}
+  - component: {fileID: 900000257}
   m_Layer: 5
   m_Name: Headlights
   m_TagString: Untagged
@@ -494092,6 +494094,7 @@ GameObject:
   - component: {fileID: 83969}
   - component: {fileID: 83968}
   - component: {fileID: 900000250}
+  - component: {fileID: 900000255}
   m_Layer: 5
   m_Name: Right Indicator Button
   m_TagString: Untagged
@@ -603015,6 +603018,7 @@ GameObject:
   - component: {fileID: 84186}
   - component: {fileID: 84185}
   - component: {fileID: 900000244}
+  - component: {fileID: 900000256}
   m_Layer: 5
   m_Name: Hazard Lights
   m_TagString: Untagged
@@ -1480333,19 +1480337,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 83284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 83282}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &83284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484860,19 +1484852,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 83391}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 83389}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &83391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1541228,19 +1541208,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 83970}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 83968}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &83970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550545,19 +1550513,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84187}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 84185}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &84187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1555860,3 +1555816,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kind: 2
+--- !u!114 &900000254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bdc854898a48b092c519b4cdb1106d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 0
+--- !u!114 &900000255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bdc854898a48b092c519b4cdb1106d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 1
+--- !u!114 &900000256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bdc854898a48b092c519b4cdb1106d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 2
+--- !u!114 &900000257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bdc854898a48b092c519b4cdb1106d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kind: 3
