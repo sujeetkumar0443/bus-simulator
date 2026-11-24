@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ChowkSignalManager : MonoBehaviour
+public class IntersectionSignalManager : MonoBehaviour
 {
 	public int signalChowkType = 3;
 

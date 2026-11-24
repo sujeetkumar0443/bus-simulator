@@ -30,12 +30,12 @@ public class PassengerController : MonoBehaviour
 
 	private void OnEnable()
 	{
-		GameControl.door = (Action<bool>)Delegate.Combine(GameControl.door, new Action<bool>(MoveNow));
+		GameplayUIController.door = (Action<bool>)Delegate.Combine(GameplayUIController.door, new Action<bool>(MoveNow));
 	}
 
 	private void OnDisable()
 	{
-		GameControl.door = (Action<bool>)Delegate.Remove(GameControl.door, new Action<bool>(MoveNow));
+		GameplayUIController.door = (Action<bool>)Delegate.Remove(GameplayUIController.door, new Action<bool>(MoveNow));
 	}
 
 	private void Start()
@@ -89,7 +89,7 @@ public class PassengerController : MonoBehaviour
 			lastindex = thisInstance.GetComponent<splineMove>().currentPoint;
 			thisInstance.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
 			animator.SetBool("issit", true);
-			BusWorking.passengerSittingCount++;
+			BusController.passengerSittingCount++;
 			thisInstance.GetComponent<splineMove>().Stop();
 			thisInstance.GetComponent<splineMove>().enabled = false;
 		}

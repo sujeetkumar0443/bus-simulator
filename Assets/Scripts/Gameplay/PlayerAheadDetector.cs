@@ -2,7 +2,7 @@ using SWS;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DetectPlayerAhead : MonoBehaviour
+public class PlayerAheadDetector : MonoBehaviour
 {
 	private RaycastHit hit;
 

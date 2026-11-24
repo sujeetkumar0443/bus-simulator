@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class hands : MonoBehaviour
+public class DriverHandsIK : MonoBehaviour
 {
 	private Animator anim;
 

@@ -322,13 +322,13 @@ public class RCC_Camera : MonoBehaviour
 		{
 		case 0:
 			cameraMode = CameraMode.TPS;
-			HR_ExtraComponentHandling.instance.SetDriver(true);
+			DashboardController.instance.SetDriver(true);
 			break;
 		case 1:
 			if (useHoodCameraMode && (bool)hoodCam)
 			{
 				cameraMode = CameraMode.FPS;
-				HR_ExtraComponentHandling.instance.SetDriver(false);
+				DashboardController.instance.SetDriver(false);
 			}
 			else
 			{

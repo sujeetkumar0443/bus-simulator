@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HR_ExtraComponentHandling : MonoBehaviour
+public class DashboardController : MonoBehaviour
 {
 	public GameObject needleSprite;
 
@@ -15,7 +15,7 @@ public class HR_ExtraComponentHandling : MonoBehaviour
 
 	private RCC_CarControllerV3 playerHandler;
 
-	public static HR_ExtraComponentHandling instance;
+	public static DashboardController instance;
 
 	public bool isWiperActive;
 
@@ -29,13 +29,13 @@ public class HR_ExtraComponentHandling : MonoBehaviour
 
 	public GameObject Driver;
 
-	public static HR_ExtraComponentHandling Instance
+	public static DashboardController Instance
 	{
 		get
 		{
 			if (instance == null)
 			{
-				instance = Object.FindObjectOfType<HR_ExtraComponentHandling>();
+				instance = Object.FindObjectOfType<DashboardController>();
 			}
 			return instance;
 		}

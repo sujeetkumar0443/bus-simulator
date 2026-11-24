@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextTyping : MonoBehaviour
+public class TypewriterText : MonoBehaviour
 {
 	public Text text;
 

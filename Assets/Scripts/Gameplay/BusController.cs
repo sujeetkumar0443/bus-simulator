@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BusWorking : MonoBehaviour
+public class BusController : MonoBehaviour
 {
 	public CameraController camcontrol;
 
@@ -49,17 +49,17 @@ public class BusWorking : MonoBehaviour
 
 	private int taskTotal;
 
-	public GameCompleteScript gamecond;
+	public LevelCompleteController gamecond;
 
 	private bool checkDirection;
 
 	public GameObject TurnArround;
 
-	public GameControl controller;
+	public GameplayUIController controller;
 
 	public GameObject fuelBars;
 
-	public TimeerScript time;
+	public LevelTimer time;
 
 	public GameObject SpeedUppassengers;
 
@@ -84,12 +84,12 @@ public class BusWorking : MonoBehaviour
 
 	private void OnEnable()
 	{
-		GameControl.BusDoorEvent = (Action<bool>)Delegate.Combine(GameControl.BusDoorEvent, new Action<bool>(OpenDoor));
+		GameplayUIController.BusDoorEvent = (Action<bool>)Delegate.Combine(GameplayUIController.BusDoorEvent, new Action<bool>(OpenDoor));
 	}
 
 	private void OnDisable()
 	{
-		GameControl.BusDoorEvent = (Action<bool>)Delegate.Remove(GameControl.BusDoorEvent, new Action<bool>(OpenDoor));
+		GameplayUIController.BusDoorEvent = (Action<bool>)Delegate.Remove(GameplayUIController.BusDoorEvent, new Action<bool>(OpenDoor));
 	}
 
 	private void OpenDoor(bool temp)
@@ -219,7 +219,7 @@ public class BusWorking : MonoBehaviour
 			Invoke("BackToControls", 4f);
 			checkPassengers = false;
 			passengerLoaded = true;
-			GameControl.BusDoorEvent(false);
+			GameplayUIController.BusDoorEvent(false);
 			CancelInvoke("checkpassengerSitting");
 		}
 	}

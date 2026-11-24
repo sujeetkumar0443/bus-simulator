@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ParkingAnimScript : MonoBehaviour
+public class ParkingAnimator : MonoBehaviour
 {
 	private void Start()
 	{

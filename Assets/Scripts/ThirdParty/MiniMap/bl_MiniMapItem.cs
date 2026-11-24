@@ -58,7 +58,7 @@ public class bl_MiniMapItem : MonoBehaviour
 	[Tooltip("Time before render/show item in minimap after instance")]
 	public float RenderDelay = 0.3f;
 
-	public ItemEffect m_Effect = ItemEffect.None;
+	public ItemEffectType m_Effect = ItemEffectType.None;
 
 	private Image Graphic;
 
@@ -206,11 +206,11 @@ public class bl_MiniMapItem : MonoBehaviour
 	private void StartEffect()
 	{
 		Animator component = Graphic.GetComponent<Animator>();
-		if (m_Effect == ItemEffect.Pulsing)
+		if (m_Effect == ItemEffectType.Pulsing)
 		{
 			component.SetInteger("Type", 2);
 		}
-		else if (m_Effect == ItemEffect.Fade)
+		else if (m_Effect == ItemEffectType.Fade)
 		{
 			component.SetInteger("Type", 1);
 		}

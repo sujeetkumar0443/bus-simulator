@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class checkSignalForPlayer : MonoBehaviour
+public class PlayerSignalDetector : MonoBehaviour
 {
 	private RaycastHit hit;
 

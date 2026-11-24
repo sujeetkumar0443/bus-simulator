@@ -23,12 +23,12 @@ public class SoundManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		GameControl.BusDoorEvent = (Action<bool>)Delegate.Combine(GameControl.BusDoorEvent, new Action<bool>(BusDoorOpenSound));
+		GameplayUIController.BusDoorEvent = (Action<bool>)Delegate.Combine(GameplayUIController.BusDoorEvent, new Action<bool>(BusDoorOpenSound));
 	}
 
 	private void OnDisable()
 	{
-		GameControl.BusDoorEvent = (Action<bool>)Delegate.Remove(GameControl.BusDoorEvent, new Action<bool>(BusDoorOpenSound));
+		GameplayUIController.BusDoorEvent = (Action<bool>)Delegate.Remove(GameplayUIController.BusDoorEvent, new Action<bool>(BusDoorOpenSound));
 	}
 
 	private void Start()

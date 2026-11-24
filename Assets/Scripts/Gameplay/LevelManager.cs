@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour
 
 	public static int TotalsParking;
 
-	public PathFinding pathTarget;
+	public NavTargetController pathTarget;
 
 	private IEnumerator objectivedisappear()
 	{

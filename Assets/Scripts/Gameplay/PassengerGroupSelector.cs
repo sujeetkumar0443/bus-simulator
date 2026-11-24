@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PassengersPAthSettig : MonoBehaviour
+public class PassengerGroupSelector : MonoBehaviour
 {
 	private void Start()
 	{

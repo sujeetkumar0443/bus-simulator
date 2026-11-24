@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class checkSignals : MonoBehaviour
+public class TrafficSignalStopper : MonoBehaviour
 {
 	public static bool StopAtSignal;
 

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameCompleteScript : MonoBehaviour
+public class LevelCompleteController : MonoBehaviour
 {
 	public GameObject LevelCompDialog;
 

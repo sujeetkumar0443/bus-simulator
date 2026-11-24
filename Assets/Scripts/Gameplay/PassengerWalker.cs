@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class characterMovement : MonoBehaviour
+public class PassengerWalker : MonoBehaviour
 {
 	private GameObject temp;
 
@@ -26,7 +26,7 @@ public class characterMovement : MonoBehaviour
 		if (Physics.Raycast(new Vector3(base.transform.position.x, base.transform.position.y + 1.5f, base.transform.position.z), base.transform.forward, out hit, 1f) && hit.transform.tag == "Player")
 		{
 			base.gameObject.SetActive(false);
-			checkparking.passengerloadcount++;
+			ParkingChecker.passengerloadcount++;
 			if (!dollar.GetComponent<Animation>().isPlaying)
 			{
 				dollar.GetComponent<Animation>().Play();

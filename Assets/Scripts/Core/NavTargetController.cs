@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PathFinding : MonoBehaviour
+public class NavTargetController : MonoBehaviour
 {
-	public static PathFinding instance;
+	public static NavTargetController instance;
 
 	private void Start()
 	{

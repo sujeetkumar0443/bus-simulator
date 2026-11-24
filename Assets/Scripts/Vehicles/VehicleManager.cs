@@ -12,7 +12,7 @@ public class VehicleManager : MonoBehaviour
 
 	public GameObject selectedVehicle;
 
-	public GameControl controls;
+	public GameplayUIController controls;
 
 	public GameObject buspos;
 

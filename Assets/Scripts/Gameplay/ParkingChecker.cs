@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class checkparking : MonoBehaviour
+public class ParkingChecker : MonoBehaviour
 {
 	private bool park1;
 
@@ -27,7 +27,7 @@ public class checkparking : MonoBehaviour
 
 	private GameObject parkingobj;
 
-	public GameCompleteScript gamecond;
+	public LevelCompleteController gamecond;
 
 	private GameObject passenger;
 
@@ -43,7 +43,7 @@ public class checkparking : MonoBehaviour
 
 	private bool done1;
 
-	public GameControl controllers;
+	public GameplayUIController controllers;
 
 	private int count;
 
@@ -121,7 +121,7 @@ public class checkparking : MonoBehaviour
 	private IEnumerator characterDelay()
 	{
 		passenger = parkingobj.transform.Find("passenger").gameObject;
-		passenger.transform.GetChild(count).gameObject.GetComponent<characterMovement>().enabled = true;
+		passenger.transform.GetChild(count).gameObject.GetComponent<PassengerWalker>().enabled = true;
 		yield return new WaitForSeconds(1f);
 		if (count < 2)
 		{

@@ -3,7 +3,7 @@ using System.Collections;
 using EVP;
 using UnityEngine;
 
-public class GameControl : MonoBehaviour
+public class GameplayUIController : MonoBehaviour
 {
     private VehicleStandardInput vehiclecontrols;
 
@@ -53,7 +53,7 @@ public class GameControl : MonoBehaviour
 
     private bool isactive;
 
-    public static GameControl gameController;
+    public static GameplayUIController gameController;
 
     public GameObject vehicleUiControls;
 
@@ -61,7 +61,7 @@ public class GameControl : MonoBehaviour
 
     public GameObject fuelDialogeWarningText;
 
-    public TimeerScript timersScript;
+    public LevelTimer timersScript;
 
     public GameObject fuelbar;
 

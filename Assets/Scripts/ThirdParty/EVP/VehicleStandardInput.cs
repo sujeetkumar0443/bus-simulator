@@ -40,11 +40,11 @@ namespace EVP
 		{
 			if (!(target == null))
 			{
-				if (Constants.tiltcontrol)
+				if (GameState.tiltcontrol)
 				{
 					steerInput = Input.acceleration.x * (float)PlayerPrefs.GetInt("transmission");
 				}
-				else if (Constants.steercontrol)
+				else if (GameState.steercontrol)
 				{
 					steerInput = steerWheel.GetClampedValue();
 				}
@@ -63,7 +63,7 @@ namespace EVP
 			}
 			if (Application.platform != RuntimePlatform.Android && Application.platform != RuntimePlatform.IPhonePlayer)
 			{
-				if (!Constants.tiltcontrol)
+				if (!GameState.tiltcontrol)
 				{
 					steerInput = Mathf.Clamp(Input.GetAxis(steerAxis), -1f, 1f);
 				}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Constants : MonoBehaviour
+public class GameState : MonoBehaviour
 {
 	public static bool gameOver;
 

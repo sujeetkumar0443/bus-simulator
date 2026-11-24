@@ -1,4 +1,4 @@
-public enum ItemEffect
+public enum ItemEffectType
 {
 	Pulsing = 0,
 	Fade = 1,

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimeerScript : MonoBehaviour
+public class LevelTimer : MonoBehaviour
 {
 	public float min;
 
@@ -10,7 +10,7 @@ public class TimeerScript : MonoBehaviour
 
 	public GameObject time;
 
-	public GameCompleteScript gamecond;
+	public LevelCompleteController gamecond;
 
 	public GameObject controls;
 

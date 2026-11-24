@@ -14,7 +14,7 @@ public class bl_MMItemInfo
 
 	public Sprite Sprite;
 
-	public ItemEffect Effect = ItemEffect.Fade;
+	public ItemEffectType Effect = ItemEffectType.Fade;
 
 	public bl_MMItemInfo(Vector3 position)
 	{

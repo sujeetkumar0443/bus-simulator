@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpeedoMeterWorking : MonoBehaviour
+public class SpeedometerController : MonoBehaviour
 {
 	public Image needleSprite;
 
