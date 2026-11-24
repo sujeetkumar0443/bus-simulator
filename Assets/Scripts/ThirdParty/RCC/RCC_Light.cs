@@ -310,6 +310,7 @@ public class RCC_Light : MonoBehaviour
 
 	private void LensFlare()
 	{
+		mainCamera = Camera.main;
 		if (!mainCamera)
 		{
 			mainCamera = RCC_SceneManager.Instance.activeMainCamera;
@@ -326,7 +327,7 @@ public class RCC_Light : MonoBehaviour
 			{
 				finalFlareBrightness = flareBrightness * (4f / num) * ((300f - 3f * num2) / 300f) / 3f;
 			}
-			lensFlare.brightness = finalFlareBrightness * _light.intensity;
+			lensFlare.brightness = finalFlareBrightness * _light.intensity * ((lightType == LightType.Indicator) ? 5f : 1f);
 			lensFlare.color = _light.color;
 		}
 	}
