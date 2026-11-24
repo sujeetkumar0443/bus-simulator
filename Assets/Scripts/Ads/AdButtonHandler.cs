@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AdsButtoncalling : MonoBehaviour
+public class AdButtonHandler : MonoBehaviour
 {
 	private void Start()
 	{

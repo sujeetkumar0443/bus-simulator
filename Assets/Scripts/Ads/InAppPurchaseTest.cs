@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class INAPPTest : MonoBehaviour
+public class InAppPurchaseTest : MonoBehaviour
 {
 	private void Start()
 	{

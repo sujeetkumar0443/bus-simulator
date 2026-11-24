@@ -2,7 +2,7 @@ using CnControls;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class ThidPersonExampleController : MonoBehaviour
+public class ThirdPersonExampleController : MonoBehaviour
 {
 	public float MovementSpeed = 10f;
 

@@ -3,17 +3,20 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
  
 
-public class RewardedVideoAdScene : MonoBehaviour
+public class InterstitialAdController : MonoBehaviour
 {
     private bool isLoaded;
 
     public Text statusLabel;
 
-    public void LoadRewardedVideo()
+    public void LoadInterstitial()
     {
-        statusLabel.text = "Loading rewardedVideo ad...";
-        // Check if rewarded video ad is available
-        if (Advertisements.Instance.IsRewardVideoAvailable())
+        statusLabel.text = "Loading interstitial ad...";
+        // Load the interstitial ad
+        Advertisements.Instance.ShowInterstitial();
+
+        // Check if the ad is available after loading
+        if (Advertisements.Instance.IsInterstitialAvailable())
         {
             isLoaded = true;
             statusLabel.text = "Ad loaded. Click 'Show' to watch.";
@@ -25,12 +28,12 @@ public class RewardedVideoAdScene : MonoBehaviour
         }
     }
 
-    public void ShowRewardedVideo()
+    public void ShowInterstitial()
     {
         if (isLoaded)
         {
-            // Show rewarded video ad
-            AdManager.Instance.ShowRewardedVideo();
+            // Show the interstitial ad
+            Advertisements.Instance.ShowInterstitial();
             isLoaded = false;
             statusLabel.text = string.Empty;
         }
@@ -42,11 +45,12 @@ public class RewardedVideoAdScene : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("RewardedVideoAdScene was destroyed!");
+        // Perform any necessary cleanup for the Gley plugin
+        Debug.Log("InterstitialAdScene was destroyed!");
     }
 
     public void NextScene()
     {
-        SceneManager.LoadScene("NativeAdScene");
+        SceneManager.LoadScene("AdViewScene");
     }
 }

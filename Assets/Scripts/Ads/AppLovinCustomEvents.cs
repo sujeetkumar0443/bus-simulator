@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ApplovinCustomEvents : MonoBehaviour
+public class AppLovinCustomEvents : MonoBehaviour
 {
 	private void Start()
 	{
