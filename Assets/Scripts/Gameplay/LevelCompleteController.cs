@@ -42,7 +42,7 @@ public class LevelCompleteController : MonoBehaviour
 			return;
 		}
 		done = true;
-		Constants.LevelOver = true;
+		GameState.LevelOver = true;
 		PlayerPrefs.SetInt("cash", PlayerPrefs.GetInt("cash") + 11000);
 		TotalCash.text = PlayerPrefs.GetInt("cash").ToString();
 		LevelCompDialog.SetActive(true);

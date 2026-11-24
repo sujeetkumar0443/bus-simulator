@@ -350,9 +350,9 @@ public class GameplayUIController : MonoBehaviour
 
     public void TiltControl()
     {
-        Constants.starttime = true;
-        Constants.tiltcontrol = true;
-        Constants.steercontrol = false;
+        GameState.starttime = true;
+        GameState.tiltcontrol = true;
+        GameState.steercontrol = false;
         controldialoge.SetActive(false);
         RCC.SetMobileController(RCC_Settings.MobileController.Gyro);
         if (!isGamePause)
@@ -363,9 +363,9 @@ public class GameplayUIController : MonoBehaviour
 
     public void SteeringControl()
     {
-        Constants.starttime = true;
-        Constants.tiltcontrol = false;
-        Constants.steercontrol = true;
+        GameState.starttime = true;
+        GameState.tiltcontrol = false;
+        GameState.steercontrol = true;
         controldialoge.SetActive(false);
         RCC.SetMobileController(RCC_Settings.MobileController.SteeringWheel);
         if (!isGamePause)
@@ -376,9 +376,9 @@ public class GameplayUIController : MonoBehaviour
 
     public void ButtonControl()
     {
-        Constants.starttime = true;
-        Constants.tiltcontrol = false;
-        Constants.steercontrol = false;
+        GameState.starttime = true;
+        GameState.tiltcontrol = false;
+        GameState.steercontrol = false;
         controldialoge.SetActive(false);
         RCC.SetMobileController(RCC_Settings.MobileController.TouchScreen);
         if (!isGamePause)

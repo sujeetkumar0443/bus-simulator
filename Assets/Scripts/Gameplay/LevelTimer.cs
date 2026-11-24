@@ -96,7 +96,7 @@ public class LevelTimer : MonoBehaviour
 			yield return new WaitForSeconds(1f);
 			if (sec > 0f)
 			{
-				if (Constants.starttime && !Constants.LevelOver)
+				if (GameState.starttime && !GameState.LevelOver)
 				{
 					sec -= 1f;
 					seconds.text = sec.ToString();

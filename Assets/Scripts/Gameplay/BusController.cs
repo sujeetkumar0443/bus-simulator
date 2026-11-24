@@ -138,7 +138,7 @@ public class BusController : MonoBehaviour
 		taskTotal++;
 		if (LevelManager.TotalsParking == taskTotal)
 		{
-			Constants.LevelOver = true;
+			GameState.LevelOver = true;
 			Invoke("GameComplete", 10f);
 		}
 		else
