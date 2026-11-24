@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class vehicleSelection : MonoBehaviour
+public class VehicleSelectionController : MonoBehaviour
 {
 	public GameObject vehiclelock;
 

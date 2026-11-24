@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MainMenuScipt : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
 	public SoundManager sound;
 

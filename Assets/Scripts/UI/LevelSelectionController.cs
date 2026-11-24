@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
  
 
-public class LevelSelectionScript : MonoBehaviour
+public class LevelSelectionController : MonoBehaviour
 {
     public GameObject levels;
     public GameObject levelsLock;

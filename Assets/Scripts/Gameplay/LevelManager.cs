@@ -43,7 +43,7 @@ public class LevelManager : MonoBehaviour
 		lastparking = null;
 		passenger = 0;
 		cashtext.text = PlayerPrefs.GetInt("cash").ToString();
-		if (!ModeSelection.FreeMoode)
+		if (!ModeSelectionController.FreeMoode)
 		{
 			objectivedialoge.SetActive(true);
 			StartCoroutine(objectivedisappear());

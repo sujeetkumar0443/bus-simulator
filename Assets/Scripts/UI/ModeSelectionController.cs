@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ModeSelection : MonoBehaviour
+public class ModeSelectionController : MonoBehaviour
 {
     public SoundManager sound;
 

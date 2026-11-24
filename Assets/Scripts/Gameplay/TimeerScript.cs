@@ -36,7 +36,7 @@ public class TimeerScript : MonoBehaviour
 
 	public void settime()
 	{
-		if (!ModeSelection.FreeMoode)
+		if (!ModeSelectionController.FreeMoode)
 		{
 			min = levelsMin[LevelManager.LevelNumber - 1];
 		}

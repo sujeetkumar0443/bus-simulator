@@ -35,7 +35,7 @@ public class VehicleManager : MonoBehaviour
 		vehicleManager = this;
 		vehiclenum = PlayerPrefs.GetInt("vehicle");
 		selectedVehicle = base.transform.GetChild(PlayerPrefs.GetInt("vehicle")).gameObject;
-		if (!ModeSelection.FreeMoode)
+		if (!ModeSelectionController.FreeMoode)
 		{
 			busPosition = levels.transform.GetChild(LevelManager.LevelNumber - 1).transform.GetChild(0).gameObject;
 			vNo = PlayerPrefs.GetInt("vehicle");
