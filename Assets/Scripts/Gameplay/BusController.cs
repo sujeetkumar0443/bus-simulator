@@ -5,398 +5,401 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BusController : MonoBehaviour
+namespace BusSimulator
 {
-	public CameraController camcontrol;
+	public class BusController : MonoBehaviour
+	{
+		public CameraController camcontrol;
 
-	public GameObject doors;
+		public GameObject doors;
 
-	public GameObject passengers;
+		public GameObject passengers;
 
-	private bool park1;
+		private bool park1;
 
-	private bool park2;
+		private bool park2;
 
-	private bool park3;
+		private bool park3;
 
-	private bool park4;
+		private bool park4;
 	 
-	private float trafficSpeed;
+		private float trafficSpeed;
 
-	private GameObject parkingObject;
+		private GameObject parkingObject;
 
-	private GameObject stationPassengers;
+		private GameObject stationPassengers;
 
-	public GameObject parkingbar;
+		public GameObject parkingbar;
 
-	private bool parkingComplete;
+		private bool parkingComplete;
 
-	private bool parkingCompletedCheck;
+		private bool parkingCompletedCheck;
 
-	public GameObject vehicleControls;
+		public GameObject vehicleControls;
 
-	public GameObject busdoorbtn;
+		public GameObject busdoorbtn;
 
-	public int passengersTotalCount;
+		public int passengersTotalCount;
 
-	public int inBusPassengersTotalCount;
+		public int inBusPassengersTotalCount;
 
-	public static int passengerSittingCount;
+		public static int passengerSittingCount;
 
-	public static int passengerStandingCount;
+		public static int passengerStandingCount;
 
-	private int rand;
+		private int rand;
 
-	private int taskTotal;
+		private int taskTotal;
 
-	public LevelCompleteController gamecond;
+		public LevelCompleteController gamecond;
 
-	private bool checkDirection;
+		private bool checkDirection;
 
-	public GameObject TurnArround;
+		public GameObject TurnArround;
 
-	public GameplayUIController controller;
+		public GameplayUIController controller;
 
-	public GameObject fuelBars;
+		public GameObject fuelBars;
 
-	public LevelTimer time;
+		public LevelTimer time;
 
-	public GameObject SpeedUppassengers;
+		public GameObject SpeedUppassengers;
 
-	public GameObject MiniMap;
+		public GameObject MiniMap;
 
-	public SoundManager sound;
+		public SoundManager sound;
 
-	public Text levelFailReason;
+		public Text levelFailReason;
 
-	public Text StopHereText;
+		public Text StopHereText;
 
-	private bool checkPassengers;
+		private bool checkPassengers;
 
-	private bool passengerLoaded;
+		private bool passengerLoaded;
 
-	private void Start()
-	{
-		passengersTotalCount = 0;
-		passengerSittingCount = 0;
-		passengers = base.transform.Find("passengers").gameObject;
-	}
-
-	private void OnEnable()
-	{
-		GameplayUIController.BusDoorEvent = (Action<bool>)Delegate.Combine(GameplayUIController.BusDoorEvent, new Action<bool>(OpenDoor));
-	}
-
-	private void OnDisable()
-	{
-		GameplayUIController.BusDoorEvent = (Action<bool>)Delegate.Remove(GameplayUIController.BusDoorEvent, new Action<bool>(OpenDoor));
-	}
-
-	private void OpenDoor(bool temp)
-	{
-		if (temp)
-		{
-			for (int i = 0; i < doors.transform.childCount; i++)
-			{
-				doors.transform.GetChild(i).transform.GetChild(0).GetComponent<Animator>().SetBool("doorclose", false);
-				doors.transform.GetChild(i).transform.GetChild(0).GetComponent<Animator>().SetBool("dooropen", true);
-			}
-			return;
-		}
-		sound.BusDoorOpenSound(false);
-		for (int j = 0; j < doors.transform.childCount; j++)
-		{
-			doors.transform.GetChild(j).transform.GetChild(0).GetComponent<Animator>().SetBool("dooropen", false);
-			doors.transform.GetChild(j).transform.GetChild(0).GetComponent<Animator>().SetBool("doorclose", true);
-		}
-	}
-
-	private void GameComplete()
-	{
-		gamecond.LevelComplete();
-	}
-
-	private IEnumerator ParkingBarFillUp()
-	{
-		Debug.Log("ParkingBarFillUp");
-		parkingbar.SetActive(true);
-		while (true)
-		{
-			yield return new WaitForSeconds(0f);
-			if (parkingbar.GetComponent<Image>().fillAmount < 0.9f)
-			{
-				parkingbar.GetComponent<Image>().fillAmount += 0.05f;
-				continue;
-			}
-			break;
-		}
-		CheckParkingCompletion();
-	}
-
-	private void CheckParkingCompletion()
-	{
-		taskTotal++;
-		if (LevelManager.TotalsParking == taskTotal)
-		{
-			GameState.LevelOver = true;
-			Invoke("GameComplete", 10f);
-		}
-		else
-		{
-			stationPassengers = parkingObject.transform.Find("passengers").gameObject;
-		}
-		park1 = false;
-		park2 = false;
-		park3 = false;
-		park4 = false;
-		parkingObject.tag = "Untagged";
-		parkingObject.transform.GetChild(0).gameObject.SetActive(false);
-		parkingObject.transform.GetChild(1).gameObject.SetActive(false);
-		parkingObject.transform.GetChild(0).GetComponent<bl_MiniMapItem>().DestroyItem(true);
-		parkingObject.transform.parent.transform.GetChild(1).gameObject.SetActive(true);
-		parkingbar.GetComponent<Image>().fillAmount = 0f;
-		parkingbar.SetActive(false);
-		parkingComplete = false;
-		vehicleControls.SetActive(false);
-		camcontrol.SetDoorCam();
-		SelectPassengers();
-		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-		controller.ResetInputs();
-		Invoke("miniMapDelay_Off", 1.5f);
-	}
-
-	private void miniMapDelay_Off()
-	{
-		MiniMap.SetActive(false);
-	}
-
-	private void BackToControls()
-	{
-		vehicleControls.SetActive(true);
-		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-		camcontrol.ResetCamPosition();
-		MiniMap.SetActive(true);
-		SpeedUppassengers.SetActive(false);
-		Time.timeScale = 1f;
-	}
-
-	private void SelectPassengers()
-	{
-		Debug.Log("vehicle no : " + VehicleManager.vNo);
-		if (passengers.transform.childCount > 0)
-		{
-			Debug.Log("passenger count : " + passengers.transform.childCount);
-			rand = UnityEngine.Random.Range(3, passengers.transform.childCount);
-			for (int i = 0; i < rand; i++)
-			{
-				passengers.transform.GetChild(i).GetComponent<PassengerController>().ActiveNow = true;
-			}
-			busdoorbtn.SetActive(true);
-		}
-		else
-		{
-			Debug.Log("station passenger : " + stationPassengers.transform.GetChild(VehicleManager.vNo).childCount);
-			rand = UnityEngine.Random.Range(3, stationPassengers.transform.GetChild(VehicleManager.vNo).childCount);
-			for (int j = 0; j < rand; j++)
-			{
-				stationPassengers.transform.GetChild(VehicleManager.vNo).transform.GetChild(j).GetComponent<PassengerController>().ActiveNow = true;
-			}
-			busdoorbtn.SetActive(true);
-		}
-	}
-
-	private void SetFuelBar()
-	{
-		time.ResetTime();
-	}
-
-	private void checkpassengerSitting()
-	{
-		if (passengersTotalCount == passengerSittingCount && passengersTotalCount > 0)
+		private void Start()
 		{
 			passengersTotalCount = 0;
 			passengerSittingCount = 0;
-			Invoke("BackToControls", 4f);
-			checkPassengers = false;
-			passengerLoaded = true;
-			GameplayUIController.BusDoorEvent(false);
-			CancelInvoke("checkpassengerSitting");
+			passengers = base.transform.Find("passengers").gameObject;
 		}
-	}
 
-	private IEnumerator ResetPumpParking(GameObject pump)
-	{
-		yield return new WaitForSeconds(10f);
-		pump.SetActive(true);
-		pump.transform.GetChild(0).GetComponent<bl_MiniMapItem>().ShowItem();
-	}
-
-	private void LevelFailDelay()
-	{
-		gamecond.LevelFail();
-	}
-
-	private void OnCollisionEnter(Collision coll)
-	{
-		Debug.Log("colllider with");
-		if (GetComponent<Rigidbody>().velocity.magnitude > 2f)
+		private void OnEnable()
 		{
-			Debug.Log("colllider with after");
-			sound.BusHitSound();
+			GameplayUIController.BusDoorEvent = (Action<bool>)Delegate.Combine(GameplayUIController.BusDoorEvent, new Action<bool>(OpenDoor));
 		}
-	}
 
-	private void OnTriggerEnter(Collider coll)
-	{
-		if (coll.gameObject.tag == "passenger" && parkingCompletedCheck && !passengerLoaded)
+		private void OnDisable()
 		{
-			coll.gameObject.GetComponent<PassengerController>().isInBus = true;
-			coll.gameObject.transform.parent = passengers.transform;
-			coll.gameObject.tag = "inbuspassenger";
-			passengersTotalCount++;
-			if (!checkPassengers)
+			GameplayUIController.BusDoorEvent = (Action<bool>)Delegate.Remove(GameplayUIController.BusDoorEvent, new Action<bool>(OpenDoor));
+		}
+
+		private void OpenDoor(bool temp)
+		{
+			if (temp)
 			{
-				checkPassengers = true;
-				InvokeRepeating("checkpassengerSitting", 1f, 1f);
+				for (int i = 0; i < doors.transform.childCount; i++)
+				{
+					doors.transform.GetChild(i).transform.GetChild(0).GetComponent<Animator>().SetBool("doorclose", false);
+					doors.transform.GetChild(i).transform.GetChild(0).GetComponent<Animator>().SetBool("dooropen", true);
+				}
+				return;
+			}
+			sound.BusDoorOpenSound(false);
+			for (int j = 0; j < doors.transform.childCount; j++)
+			{
+				doors.transform.GetChild(j).transform.GetChild(0).GetComponent<Animator>().SetBool("dooropen", false);
+				doors.transform.GetChild(j).transform.GetChild(0).GetComponent<Animator>().SetBool("doorclose", true);
 			}
 		}
-		if (coll.gameObject.tag == "passenger" && GetComponent<Rigidbody>().velocity.magnitude > 3f)
-		{
-			coll.gameObject.tag = "Untagged";
-			levelFailReason.text = "You hit the passengers";
-			sound.BusHitSound();
-			Invoke("LevelFailDelay", 0.4f);
-		}
-		if (coll.gameObject.tag == "pumpparking")
-		{
-			VehicleManager.vehicleManager.StopVehicle(true);
-			coll.gameObject.SetActive(false);
-			StartCoroutine(ResetPumpParking(coll.gameObject));
-			coll.gameObject.transform.GetChild(0).GetComponent<bl_MiniMapItem>().HideItem();
-			fuelBars.GetComponent<Animator>().SetBool("open", true);
-			Invoke("SetFuelBar", fuelBars.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
-		}
-		Debug.Log("Trigger enter in :" + coll.gameObject.tag);
-		if (coll.gameObject.tag == "trafic")
-		{
-			trafficSpeed = coll.gameObject.GetComponent<NavMeshAgent>().speed;
-			coll.gameObject.GetComponent<navMove>().ChangeSpeed(0f);
-		}
-		if (coll.gameObject.tag == "water")
-		{
-			levelFailReason.text = string.Empty;
-			gamecond.LevelFail();
-		}
-	}
 
-	private void StopHereTextDisable()
-	{
-		StopHereText.gameObject.SetActive(false);
-	}
-
-	private void OnTriggerStay(Collider coll)
-	{
-		if (coll.gameObject.tag == "checkdirection")
+		private void GameComplete()
 		{
-			if (Vector3.Dot(base.transform.forward, coll.gameObject.transform.forward) > 0f)
+			gamecond.LevelComplete();
+		}
+
+		private IEnumerator ParkingBarFillUp()
+		{
+			Debug.Log("ParkingBarFillUp");
+			parkingbar.SetActive(true);
+			while (true)
 			{
-				checkDirection = true;
-				StopHereText.gameObject.SetActive(true);
-				StopHereText.text = "APPLY BRAKES AND STOP HERE";
-				Invoke("StopHereTextDisable", 2f);
+				yield return new WaitForSeconds(0f);
+				if (parkingbar.GetComponent<Image>().fillAmount < 0.9f)
+				{
+					parkingbar.GetComponent<Image>().fillAmount += 0.05f;
+					continue;
+				}
+				break;
+			}
+			CheckParkingCompletion();
+		}
+
+		private void CheckParkingCompletion()
+		{
+			taskTotal++;
+			if (LevelManager.TotalsParking == taskTotal)
+			{
+				GameState.LevelOver = true;
+				Invoke("GameComplete", 10f);
 			}
 			else
 			{
-				TurnArround.SetActive(true);
+				stationPassengers = parkingObject.transform.Find("passengers").gameObject;
 			}
-		}
-		if (checkDirection)
-		{
-			if (coll.gameObject.tag == "park1" && !park1)
-			{
-				park1 = true;
-				CheckComplete();
-				parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-			}
-			if (coll.gameObject.tag == "park2" && !park2)
-			{
-				park2 = true;
-				CheckComplete();
-				parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-			}
-			if (coll.gameObject.tag == "park3" && !park3)
-			{
-				park3 = true;
-				CheckComplete();
-				parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-			}
-			if (coll.gameObject.tag == "park4" && !park4)
-			{
-				park4 = true;
-				CheckComplete();
-				parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
-			}
-		}
-	}
-
-	private void CheckComplete()
-	{
-		if (park1 && park2 && park3 && park4 && !parkingComplete)
-		{
-			parkingCompletedCheck = true;
-			parkingComplete = true;
 			park1 = false;
 			park2 = false;
 			park3 = false;
 			park4 = false;
-			Debug.Log("completeeeee");
-			StartCoroutine(ParkingBarFillUp());
+			parkingObject.tag = "Untagged";
+			parkingObject.transform.GetChild(0).gameObject.SetActive(false);
+			parkingObject.transform.GetChild(1).gameObject.SetActive(false);
+			parkingObject.transform.GetChild(0).GetComponent<bl_MiniMapItem>().DestroyItem(true);
+			parkingObject.transform.parent.transform.GetChild(1).gameObject.SetActive(true);
+			parkingbar.GetComponent<Image>().fillAmount = 0f;
+			parkingbar.SetActive(false);
+			parkingComplete = false;
+			vehicleControls.SetActive(false);
+			camcontrol.SetDoorCam();
+			SelectPassengers();
+			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+			controller.ResetInputs();
+			Invoke("miniMapDelay_Off", 1.5f);
+		}
+
+		private void miniMapDelay_Off()
+		{
+			MiniMap.SetActive(false);
+		}
+
+		private void BackToControls()
+		{
+			vehicleControls.SetActive(true);
+			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+			camcontrol.ResetCamPosition();
+			MiniMap.SetActive(true);
+			SpeedUppassengers.SetActive(false);
+			Time.timeScale = 1f;
+		}
+
+		private void SelectPassengers()
+		{
+			Debug.Log("vehicle no : " + VehicleManager.vNo);
+			if (passengers.transform.childCount > 0)
+			{
+				Debug.Log("passenger count : " + passengers.transform.childCount);
+				rand = UnityEngine.Random.Range(3, passengers.transform.childCount);
+				for (int i = 0; i < rand; i++)
+				{
+					passengers.transform.GetChild(i).GetComponent<PassengerController>().ActiveNow = true;
+				}
+				busdoorbtn.SetActive(true);
+			}
+			else
+			{
+				Debug.Log("station passenger : " + stationPassengers.transform.GetChild(VehicleManager.vNo).childCount);
+				rand = UnityEngine.Random.Range(3, stationPassengers.transform.GetChild(VehicleManager.vNo).childCount);
+				for (int j = 0; j < rand; j++)
+				{
+					stationPassengers.transform.GetChild(VehicleManager.vNo).transform.GetChild(j).GetComponent<PassengerController>().ActiveNow = true;
+				}
+				busdoorbtn.SetActive(true);
+			}
+		}
+
+		private void SetFuelBar()
+		{
+			time.ResetTime();
+		}
+
+		private void checkpassengerSitting()
+		{
+			if (passengersTotalCount == passengerSittingCount && passengersTotalCount > 0)
+			{
+				passengersTotalCount = 0;
+				passengerSittingCount = 0;
+				Invoke("BackToControls", 4f);
+				checkPassengers = false;
+				passengerLoaded = true;
+				GameplayUIController.BusDoorEvent(false);
+				CancelInvoke("checkpassengerSitting");
+			}
+		}
+
+		private IEnumerator ResetPumpParking(GameObject pump)
+		{
+			yield return new WaitForSeconds(10f);
+			pump.SetActive(true);
+			pump.transform.GetChild(0).GetComponent<bl_MiniMapItem>().ShowItem();
+		}
+
+		private void LevelFailDelay()
+		{
+			gamecond.LevelFail();
+		}
+
+		private void OnCollisionEnter(Collision coll)
+		{
+			Debug.Log("colllider with");
+			if (GetComponent<Rigidbody>().velocity.magnitude > 2f)
+			{
+				Debug.Log("colllider with after");
+				sound.BusHitSound();
+			}
+		}
+
+		private void OnTriggerEnter(Collider coll)
+		{
+			if (coll.gameObject.tag == "passenger" && parkingCompletedCheck && !passengerLoaded)
+			{
+				coll.gameObject.GetComponent<PassengerController>().isInBus = true;
+				coll.gameObject.transform.parent = passengers.transform;
+				coll.gameObject.tag = "inbuspassenger";
+				passengersTotalCount++;
+				if (!checkPassengers)
+				{
+					checkPassengers = true;
+					InvokeRepeating("checkpassengerSitting", 1f, 1f);
+				}
+			}
+			if (coll.gameObject.tag == "passenger" && GetComponent<Rigidbody>().velocity.magnitude > 3f)
+			{
+				coll.gameObject.tag = "Untagged";
+				levelFailReason.text = "You hit the passengers";
+				sound.BusHitSound();
+				Invoke("LevelFailDelay", 0.4f);
+			}
+			if (coll.gameObject.tag == "pumpparking")
+			{
+				VehicleManager.vehicleManager.StopVehicle(true);
+				coll.gameObject.SetActive(false);
+				StartCoroutine(ResetPumpParking(coll.gameObject));
+				coll.gameObject.transform.GetChild(0).GetComponent<bl_MiniMapItem>().HideItem();
+				fuelBars.GetComponent<Animator>().SetBool("open", true);
+				Invoke("SetFuelBar", fuelBars.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+			}
+			Debug.Log("Trigger enter in :" + coll.gameObject.tag);
+			if (coll.gameObject.tag == "trafic")
+			{
+				trafficSpeed = coll.gameObject.GetComponent<NavMeshAgent>().speed;
+				coll.gameObject.GetComponent<navMove>().ChangeSpeed(0f);
+			}
+			if (coll.gameObject.tag == "water")
+			{
+				levelFailReason.text = string.Empty;
+				gamecond.LevelFail();
+			}
+		}
+
+		private void StopHereTextDisable()
+		{
+			StopHereText.gameObject.SetActive(false);
+		}
+
+		private void OnTriggerStay(Collider coll)
+		{
+			if (coll.gameObject.tag == "checkdirection")
+			{
+				if (Vector3.Dot(base.transform.forward, coll.gameObject.transform.forward) > 0f)
+				{
+					checkDirection = true;
+					StopHereText.gameObject.SetActive(true);
+					StopHereText.text = "APPLY BRAKES AND STOP HERE";
+					Invoke("StopHereTextDisable", 2f);
+				}
+				else
+				{
+					TurnArround.SetActive(true);
+				}
+			}
+			if (checkDirection)
+			{
+				if (coll.gameObject.tag == "park1" && !park1)
+				{
+					park1 = true;
+					CheckComplete();
+					parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+				}
+				if (coll.gameObject.tag == "park2" && !park2)
+				{
+					park2 = true;
+					CheckComplete();
+					parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+				}
+				if (coll.gameObject.tag == "park3" && !park3)
+				{
+					park3 = true;
+					CheckComplete();
+					parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+				}
+				if (coll.gameObject.tag == "park4" && !park4)
+				{
+					park4 = true;
+					CheckComplete();
+					parkingObject = coll.gameObject.transform.parent.gameObject.transform.parent.gameObject;
+				}
+			}
+		}
+
+		private void CheckComplete()
+		{
+			if (park1 && park2 && park3 && park4 && !parkingComplete)
+			{
+				parkingCompletedCheck = true;
+				parkingComplete = true;
+				park1 = false;
+				park2 = false;
+				park3 = false;
+				park4 = false;
+				Debug.Log("completeeeee");
+				StartCoroutine(ParkingBarFillUp());
 		 
+			}
 		}
-	}
 
-	private void OnTriggerExit(Collider coll)
-	{
-		if (coll.gameObject.tag == "trafic")
+		private void OnTriggerExit(Collider coll)
 		{
-			coll.gameObject.GetComponent<navMove>().ChangeSpeed(trafficSpeed);
-		}
-		if (coll.gameObject.tag == "checkdirection")
-		{
-			TurnArround.SetActive(false);
-			checkDirection = false;
-		}
-		if (coll.gameObject.tag == "park1")
-		{
-			parkingComplete = false;
-			park1 = false;
-			StopAllCoroutines();
-			parkingbar.SetActive(false);
-			parkingbar.GetComponent<Image>().fillAmount = 0f;
-		}
-		if (coll.gameObject.tag == "park2")
-		{
-			parkingComplete = false;
-			park2 = false;
-			StopAllCoroutines();
-			parkingbar.SetActive(false);
-			parkingbar.GetComponent<Image>().fillAmount = 0f;
-		}
-		if (coll.gameObject.tag == "park3")
-		{
-			parkingComplete = false;
-			park3 = false;
-			StopAllCoroutines();
-			parkingbar.SetActive(false);
-			parkingbar.GetComponent<Image>().fillAmount = 0f;
-		}
-		if (coll.gameObject.tag == "park4")
-		{
-			parkingComplete = false;
-			park4 = false;
-			StopAllCoroutines();
-			parkingbar.SetActive(false);
-			parkingbar.GetComponent<Image>().fillAmount = 0f;
+			if (coll.gameObject.tag == "trafic")
+			{
+				coll.gameObject.GetComponent<navMove>().ChangeSpeed(trafficSpeed);
+			}
+			if (coll.gameObject.tag == "checkdirection")
+			{
+				TurnArround.SetActive(false);
+				checkDirection = false;
+			}
+			if (coll.gameObject.tag == "park1")
+			{
+				parkingComplete = false;
+				park1 = false;
+				StopAllCoroutines();
+				parkingbar.SetActive(false);
+				parkingbar.GetComponent<Image>().fillAmount = 0f;
+			}
+			if (coll.gameObject.tag == "park2")
+			{
+				parkingComplete = false;
+				park2 = false;
+				StopAllCoroutines();
+				parkingbar.SetActive(false);
+				parkingbar.GetComponent<Image>().fillAmount = 0f;
+			}
+			if (coll.gameObject.tag == "park3")
+			{
+				parkingComplete = false;
+				park3 = false;
+				StopAllCoroutines();
+				parkingbar.SetActive(false);
+				parkingbar.GetComponent<Image>().fillAmount = 0f;
+			}
+			if (coll.gameObject.tag == "park4")
+			{
+				parkingComplete = false;
+				park4 = false;
+				StopAllCoroutines();
+				parkingbar.SetActive(false);
+				parkingbar.GetComponent<Image>().fillAmount = 0f;
+			}
 		}
 	}
 }

@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public class TrafficCarManager : MonoBehaviour
+namespace BusSimulator
 {
-	private void Start()
+	public class TrafficCarManager : MonoBehaviour
 	{
+		private void Start()
+		{
+		}
 	}
 }

@@ -1,56 +1,58 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
- 
 
-public class InterstitialAdController : MonoBehaviour
+namespace BusSimulator
 {
-    private bool isLoaded;
-
-    public Text statusLabel;
-
-    public void LoadInterstitial()
+    public class InterstitialAdController : MonoBehaviour
     {
-        statusLabel.text = "Loading interstitial ad...";
-        // Load the interstitial ad
-        Advertisements.Instance.ShowInterstitial();
+        private bool isLoaded;
 
-        // Check if the ad is available after loading
-        if (Advertisements.Instance.IsInterstitialAvailable())
-        {
-            isLoaded = true;
-            statusLabel.text = "Ad loaded. Click 'Show' to watch.";
-        }
-        else
-        {
-            isLoaded = false;
-            statusLabel.text = "Ad not loaded. Click 'Load' to request an ad.";
-        }
-    }
+        public Text statusLabel;
 
-    public void ShowInterstitial()
-    {
-        if (isLoaded)
+        public void LoadInterstitial()
         {
-            // Show the interstitial ad
+            statusLabel.text = "Loading interstitial ad...";
+            // Load the interstitial ad
             Advertisements.Instance.ShowInterstitial();
-            isLoaded = false;
-            statusLabel.text = string.Empty;
+
+            // Check if the ad is available after loading
+            if (Advertisements.Instance.IsInterstitialAvailable())
+            {
+                isLoaded = true;
+                statusLabel.text = "Ad loaded. Click 'Show' to watch.";
+            }
+            else
+            {
+                isLoaded = false;
+                statusLabel.text = "Ad not loaded. Click 'Load' to request an ad.";
+            }
         }
-        else
+
+        public void ShowInterstitial()
         {
-            statusLabel.text = "Ad not loaded. Click 'Load' to request an ad.";
+            if (isLoaded)
+            {
+                // Show the interstitial ad
+                Advertisements.Instance.ShowInterstitial();
+                isLoaded = false;
+                statusLabel.text = string.Empty;
+            }
+            else
+            {
+                statusLabel.text = "Ad not loaded. Click 'Load' to request an ad.";
+            }
         }
-    }
 
-    private void OnDestroy()
-    {
-        // Perform any necessary cleanup for the Gley plugin
-        Debug.Log("InterstitialAdScene was destroyed!");
-    }
+        private void OnDestroy()
+        {
+            // Perform any necessary cleanup for the Gley plugin
+            Debug.Log("InterstitialAdScene was destroyed!");
+        }
 
-    public void NextScene()
-    {
-        SceneManager.LoadScene("AdViewScene");
+        public void NextScene()
+        {
+            SceneManager.LoadScene("AdViewScene");
+        }
     }
 }

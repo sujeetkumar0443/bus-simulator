@@ -1,4 +1,5 @@
 using UnityEngine;
+using BusSimulator;
 
 public class bl_MMItemInfo
 {

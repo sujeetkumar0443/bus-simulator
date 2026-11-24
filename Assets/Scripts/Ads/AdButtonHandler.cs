@@ -1,46 +1,49 @@
 using UnityEngine;
 
-public class AdButtonHandler : MonoBehaviour
+namespace BusSimulator
 {
-	private void Start()
+	public class AdButtonHandler : MonoBehaviour
 	{
-	}
+		private void Start()
+		{
+		}
 
-	public void HideBanner()
-	{
-		Advertisements.Instance.HideBanner();
-	}
+		public void HideBanner()
+		{
+			Advertisements.Instance.HideBanner();
+		}
 
-	public void ShowInterstitial()
-	{
-		Advertisements.Instance.ShowInterstitial();
-	}
+		public void ShowInterstitial()
+		{
+			Advertisements.Instance.ShowInterstitial();
+		}
 
-	public void ShowApplovin()
-	{
-		Advertisements.Instance.ShowInterstitial();
-	}
+		public void ShowApplovin()
+		{
+			Advertisements.Instance.ShowInterstitial();
+		}
 
-	public void ShowApplovinRewarded()
-	{
-		AdManager.Instance.ShowRewardedVideo();
-	}
+		public void ShowApplovinRewarded()
+		{
+			AdManager.Instance.ShowRewardedVideo();
+		}
 
-	public void ShowChartBoost()
-	{
-		Advertisements.Instance.ShowInterstitial();
-	}
+		public void ShowChartBoost()
+		{
+			Advertisements.Instance.ShowInterstitial();
+		}
 
-	public void ShowUnityAd()
-	{
-		Advertisements.Instance.ShowInterstitial();
-	}
+		public void ShowUnityAd()
+		{
+			Advertisements.Instance.ShowInterstitial();
+		}
 
-	public void ShowAdcoloyInterstitial()
-	{
-	}
+		public void ShowAdcoloyInterstitial()
+		{
+		}
 
-	public void ShowAdcoloyRewardedVideo()
-	{
+		public void ShowAdcoloyRewardedVideo()
+		{
+		}
 	}
 }

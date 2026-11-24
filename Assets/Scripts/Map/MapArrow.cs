@@ -1,28 +1,31 @@
 using UnityEngine;
 
-[AddComponentMenu("MiniMap/Map arrow")]
-public class MapArrow : MonoBehaviour
+namespace BusSimulator
 {
-	private RectTransform _arrowRect;
-
-	public RectTransform ArrowRect
+	[AddComponentMenu("MiniMap/Map arrow")]
+	public class MapArrow : MonoBehaviour
 	{
-		get
+		private RectTransform _arrowRect;
+
+		public RectTransform ArrowRect
 		{
-			if (!_arrowRect)
+			get
 			{
-				_arrowRect = GetComponent<RectTransform>();
 				if (!_arrowRect)
 				{
-					Debug.LogError("RectTransform not found. MapArrow script must by attached to an Image.");
+					_arrowRect = GetComponent<RectTransform>();
+					if (!_arrowRect)
+					{
+						Debug.LogError("RectTransform not found. MapArrow script must by attached to an Image.");
+					}
 				}
+				return _arrowRect;
 			}
-			return _arrowRect;
 		}
-	}
 
-	public void rotate(Quaternion quat)
-	{
-		ArrowRect.rotation = quat;
+		public void rotate(Quaternion quat)
+		{
+			ArrowRect.rotation = quat;
+		}
 	}
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using BusSimulator;
 
 [Serializable]
 public class RCC_Settings : ScriptableObject

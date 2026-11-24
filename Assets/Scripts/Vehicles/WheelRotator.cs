@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class WheelRotator : MonoBehaviour
+namespace BusSimulator
 {
-	public float speed = 50f;
-
-	private void Start()
+	public class WheelRotator : MonoBehaviour
 	{
-	}
+		public float speed = 50f;
 
-	private void Update()
-	{
-		base.transform.Rotate(speed, 0f, 0f);
+		private void Start()
+		{
+		}
+
+		private void Update()
+		{
+			base.transform.Rotate(speed, 0f, 0f);
+		}
 	}
 }

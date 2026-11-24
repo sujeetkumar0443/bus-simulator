@@ -1,25 +1,28 @@
 using UnityEngine;
 
-public class EnemyCar : MonoBehaviour
+namespace BusSimulator
 {
-	public int EnemyHealth = 5;
-
-	private void Start()
+	public class EnemyCar : MonoBehaviour
 	{
-	}
+		public int EnemyHealth = 5;
 
-	private void Update()
-	{
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Player")
+		private void Start()
 		{
-			EnemyHealth--;
-			if (EnemyHealth <= 0)
+		}
+
+		private void Update()
+		{
+		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.tag == "Player")
 			{
-				base.gameObject.transform.Find("Fire").gameObject.SetActive(true);
+				EnemyHealth--;
+				if (EnemyHealth <= 0)
+				{
+					base.gameObject.transform.Find("Fire").gameObject.SetActive(true);
+				}
 			}
 		}
 	}

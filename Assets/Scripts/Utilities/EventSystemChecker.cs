@@ -1,16 +1,19 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EventSystemChecker : MonoBehaviour
+namespace BusSimulator
 {
-	[System.Obsolete]
-	private void Awake()
+	public class EventSystemChecker : MonoBehaviour
 	{
-		if (!Object.FindObjectOfType<EventSystem>())
+		[System.Obsolete]
+		private void Awake()
 		{
-			GameObject gameObject = new GameObject("EventSystem");
-			gameObject.AddComponent<EventSystem>();
-			gameObject.AddComponent<StandaloneInputModule>().forceModuleActive = true;
+			if (!Object.FindObjectOfType<EventSystem>())
+			{
+				GameObject gameObject = new GameObject("EventSystem");
+				gameObject.AddComponent<EventSystem>();
+				gameObject.AddComponent<StandaloneInputModule>().forceModuleActive = true;
+			}
 		}
 	}
 }

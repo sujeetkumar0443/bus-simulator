@@ -1,18 +1,21 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavTargetController : MonoBehaviour
+namespace BusSimulator
 {
-	public static NavTargetController instance;
-
-	private void Start()
+	public class NavTargetController : MonoBehaviour
 	{
-		instance = this;
-	}
+		public static NavTargetController instance;
 
-	public void SetPathTarget(GameObject target, Transform pos)
-	{
-		base.transform.position = pos.position;
-		GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
+		private void Start()
+		{
+			instance = this;
+		}
+
+		public void SetPathTarget(GameObject target, Transform pos)
+		{
+			base.transform.position = pos.position;
+			GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
+		}
 	}
 }

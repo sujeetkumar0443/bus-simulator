@@ -1,20 +1,23 @@
 using UnityEngine;
 
-[RequireComponent(typeof(RectTransform))]
-[AddComponentMenu("MiniMap/Marker Group")]
-public class MarkerGroup : MonoBehaviour
+namespace BusSimulator
 {
-	private RectTransform _rectTransform;
-
-	public RectTransform MarkerGroupRect
+	[RequireComponent(typeof(RectTransform))]
+	[AddComponentMenu("MiniMap/Marker Group")]
+	public class MarkerGroup : MonoBehaviour
 	{
-		get
+		private RectTransform _rectTransform;
+
+		public RectTransform MarkerGroupRect
 		{
-			if (!_rectTransform)
+			get
 			{
-				_rectTransform = GetComponent<RectTransform>();
+				if (!_rectTransform)
+				{
+					_rectTransform = GetComponent<RectTransform>();
+				}
+				return _rectTransform;
 			}
-			return _rectTransform;
 		}
 	}
 }

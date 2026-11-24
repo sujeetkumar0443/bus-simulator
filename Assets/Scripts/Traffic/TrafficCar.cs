@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class TrafficCar : MonoBehaviour
+namespace BusSimulator
 {
+    public class TrafficCar : MonoBehaviour
+    {
+    }
 }

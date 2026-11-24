@@ -2,14 +2,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine.UI;
-[RequireComponent(typeof(Image))]
-public class ForcedReset : MonoBehaviour
+
+namespace BusSimulator
 {
-	private void Update()
+	[RequireComponent(typeof(Image))]
+	public class ForcedReset : MonoBehaviour
 	{
-		if (CrossPlatformInputManager.GetButtonDown("ResetObject"))
+		private void Update()
 		{
-			SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
+			if (CrossPlatformInputManager.GetButtonDown("ResetObject"))
+			{
+				SceneManager.LoadScene(SceneManager.GetSceneAt(0).name);
+			}
 		}
 	}
 }

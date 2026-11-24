@@ -1,4 +1,5 @@
 using UnityEngine;
+using BusSimulator;
 
 [AddComponentMenu("BoneCracker Games/Realistic Car Controller/UI/Mobile/RCC UI Mobile Buttons")]
 public class RCC_MobileButtons : MonoBehaviour

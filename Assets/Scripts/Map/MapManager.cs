@@ -1,38 +1,41 @@
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+namespace BusSimulator
 {
-	public GameObject mapCamera;
-
-	public GameObject MainCamera;
-
-	public GameObject MiniMapCanvas;
-
-	public GameObject CancelBtn;
-
-	public GameObject mainCanvas;
-
-	public GameObject mapHint;
-
-	public void Zoom()
+	public class MapManager : MonoBehaviour
 	{
-		mapCamera.SetActive(true);
-		MainCamera.SetActive(false);
-		MiniMapCanvas.SetActive(false);
-		mainCanvas.SetActive(false);
-		Time.timeScale = 0f;
-		CancelBtn.SetActive(true);
-		mapHint.SetActive(true);
-	}
+		public GameObject mapCamera;
 
-	public void Cancle()
-	{
-		Time.timeScale = 1f;
-		mapCamera.SetActive(false);
-		MainCamera.SetActive(true);
-		MiniMapCanvas.SetActive(true);
-		mapHint.SetActive(false);
-		CancelBtn.SetActive(false);
-		mainCanvas.SetActive(true);
+		public GameObject MainCamera;
+
+		public GameObject MiniMapCanvas;
+
+		public GameObject CancelBtn;
+
+		public GameObject mainCanvas;
+
+		public GameObject mapHint;
+
+		public void Zoom()
+		{
+			mapCamera.SetActive(true);
+			MainCamera.SetActive(false);
+			MiniMapCanvas.SetActive(false);
+			mainCanvas.SetActive(false);
+			Time.timeScale = 0f;
+			CancelBtn.SetActive(true);
+			mapHint.SetActive(true);
+		}
+
+		public void Cancle()
+		{
+			Time.timeScale = 1f;
+			mapCamera.SetActive(false);
+			MainCamera.SetActive(true);
+			MiniMapCanvas.SetActive(true);
+			mapHint.SetActive(false);
+			CancelBtn.SetActive(false);
+			mainCanvas.SetActive(true);
+		}
 	}
 }

@@ -1,41 +1,44 @@
 using UnityEngine;
 
-public class VehicleNitro : MonoBehaviour
+namespace BusSimulator
 {
-	public enum Mode
+	public class VehicleNitro : MonoBehaviour
 	{
-		Acceleration = 0,
-		Impulse = 1
-	}
-
-	public Mode mode;
-
-	public float value = 10f;
-
-	public float maxVelocity = 50f;
-
-	public KeyCode key = KeyCode.N;
-
-	private Rigidbody m_rigidbody;
-
-	private void OnEnable()
-	{
-		m_rigidbody = GetComponent<Rigidbody>();
-	}
-
-	private void Update()
-	{
-		if (mode == Mode.Impulse && Input.GetKeyDown(key) && m_rigidbody.velocity.magnitude < maxVelocity)
+		public enum Mode
 		{
-			m_rigidbody.AddRelativeForce(Vector3.forward * value, ForceMode.VelocityChange);
+			Acceleration = 0,
+			Impulse = 1
 		}
-	}
 
-	private void FixedUpdate()
-	{
-		if (mode == Mode.Acceleration && Input.GetKey(key) && m_rigidbody.velocity.magnitude < maxVelocity)
+		public Mode mode;
+
+		public float value = 10f;
+
+		public float maxVelocity = 50f;
+
+		public KeyCode key = KeyCode.N;
+
+		private Rigidbody m_rigidbody;
+
+		private void OnEnable()
 		{
-			m_rigidbody.AddRelativeForce(Vector3.forward * value, ForceMode.Acceleration);
+			m_rigidbody = GetComponent<Rigidbody>();
+		}
+
+		private void Update()
+		{
+			if (mode == Mode.Impulse && Input.GetKeyDown(key) && m_rigidbody.velocity.magnitude < maxVelocity)
+			{
+				m_rigidbody.AddRelativeForce(Vector3.forward * value, ForceMode.VelocityChange);
+			}
+		}
+
+		private void FixedUpdate()
+		{
+			if (mode == Mode.Acceleration && Input.GetKey(key) && m_rigidbody.velocity.magnitude < maxVelocity)
+			{
+				m_rigidbody.AddRelativeForce(Vector3.forward * value, ForceMode.Acceleration);
+			}
 		}
 	}
 }

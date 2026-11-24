@@ -2,30 +2,33 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpeedometerController : MonoBehaviour
+namespace BusSimulator
 {
-	public Image needleSprite;
-
-	private float kph;
-
-	public Text sppedText;
-
-	private int speed;
-
-	private void Start()
+	public class SpeedometerController : MonoBehaviour
 	{
-		StartCoroutine(SpeedoMeter());
-	}
+		public Image needleSprite;
 
-	private IEnumerator SpeedoMeter()
-	{
-		while (true)
+		private float kph;
+
+		public Text sppedText;
+
+		private int speed;
+
+		private void Start()
 		{
-			yield return new WaitForSeconds(0.05f);
-			kph = GetComponent<Rigidbody>().velocity.magnitude * 3.6f;
-			needleSprite.rectTransform.localRotation = Quaternion.Euler(0f, 0f, 0f - kph);
-			speed = (int)kph;
-			sppedText.text = speed.ToString();
+			StartCoroutine(SpeedoMeter());
+		}
+
+		private IEnumerator SpeedoMeter()
+		{
+			while (true)
+			{
+				yield return new WaitForSeconds(0.05f);
+				kph = GetComponent<Rigidbody>().velocity.magnitude * 3.6f;
+				needleSprite.rectTransform.localRotation = Quaternion.Euler(0f, 0f, 0f - kph);
+				speed = (int)kph;
+				sppedText.text = speed.ToString();
+			}
 		}
 	}
 }

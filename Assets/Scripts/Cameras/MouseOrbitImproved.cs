@@ -1,69 +1,72 @@
 using CnControls;
 using UnityEngine;
 
-[AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
-public class MouseOrbitImproved : MonoBehaviour
+namespace BusSimulator
 {
-	public Transform target;
+	[AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
+	public class MouseOrbitImproved : MonoBehaviour
+	{
+		public Transform target;
 
-	public float distance = 5f;
+		public float distance = 5f;
 
-	public float xSpeed = 120f;
+		public float xSpeed = 120f;
 
-	public float ySpeed = 120f;
+		public float ySpeed = 120f;
 
-	public float yMinLimit = -20f;
+		public float yMinLimit = -20f;
 
-	public float yMaxLimit = 80f;
+		public float yMaxLimit = 80f;
 
-	public float distanceMin = 0.5f;
+		public float distanceMin = 0.5f;
 
-	public float distanceMax = 15f;
+		public float distanceMax = 15f;
  
-	private new Rigidbody rigidbody;
+		private new Rigidbody rigidbody;
 
-	private float x;
+		private float x;
 
-	private float y;
+		private float y;
 
-	private void Start()
-	{
-		Vector3 eulerAngles = base.transform.eulerAngles;
-		x = eulerAngles.y;
-		y = eulerAngles.x;
-		rigidbody = GetComponent<Rigidbody>();
-		if (rigidbody != null)
+		private void Start()
 		{
-			rigidbody.freezeRotation = true;
+			Vector3 eulerAngles = base.transform.eulerAngles;
+			x = eulerAngles.y;
+			y = eulerAngles.x;
+			rigidbody = GetComponent<Rigidbody>();
+			if (rigidbody != null)
+			{
+				rigidbody.freezeRotation = true;
+			}
 		}
-	}
 
-	private void LateUpdate()
-	{
-		if ((bool)target)
+		private void LateUpdate()
 		{
-			x += CnInputManager.GetAxis("Horizontal") * xSpeed * distance * 0.02f;
-			y -= CnInputManager.GetAxis("Vertical") * ySpeed * 0.02f;
-			y = ClampAngle(y, yMinLimit, yMaxLimit);
-			Quaternion quaternion = Quaternion.Euler(y, x, 0f);
-			distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5f, distanceMin, distanceMax);
-			Vector3 vector = new Vector3(0f, 0f, 0f - distance);
-			Vector3 position = quaternion * vector + target.position;
-			base.transform.rotation = quaternion;
-			base.transform.position = position;
+			if ((bool)target)
+			{
+				x += CnInputManager.GetAxis("Horizontal") * xSpeed * distance * 0.02f;
+				y -= CnInputManager.GetAxis("Vertical") * ySpeed * 0.02f;
+				y = ClampAngle(y, yMinLimit, yMaxLimit);
+				Quaternion quaternion = Quaternion.Euler(y, x, 0f);
+				distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * 5f, distanceMin, distanceMax);
+				Vector3 vector = new Vector3(0f, 0f, 0f - distance);
+				Vector3 position = quaternion * vector + target.position;
+				base.transform.rotation = quaternion;
+				base.transform.position = position;
+			}
 		}
-	}
 
-	public static float ClampAngle(float angle, float min, float max)
-	{
-		if (angle < -360f)
+		public static float ClampAngle(float angle, float min, float max)
 		{
-			angle += 360f;
+			if (angle < -360f)
+			{
+				angle += 360f;
+			}
+			if (angle > 360f)
+			{
+				angle -= 360f;
+			}
+			return Mathf.Clamp(angle, min, max);
 		}
-		if (angle > 360f)
-		{
-			angle -= 360f;
-		}
-		return Mathf.Clamp(angle, min, max);
 	}
 }

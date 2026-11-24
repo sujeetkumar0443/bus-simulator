@@ -2,42 +2,45 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TrafficSignalStopper : MonoBehaviour
+namespace BusSimulator
 {
-	public static bool StopAtSignal;
-
-	private float speed;
-
-	private void Start()
+	public class TrafficSignalStopper : MonoBehaviour
 	{
-		StopAtSignal = false;
-		speed = GetComponent<NavMeshAgent>().speed;
-	}
+		public static bool StopAtSignal;
 
-	private void Update()
-	{
-	}
+		private float speed;
 
-	private IEnumerator CheckSignalPosition(GameObject obj)
-	{
-		yield return new WaitForSeconds(0.5f);
-		if (!obj.transform.GetChild(0).gameObject.activeSelf)
+		private void Start()
 		{
 			StopAtSignal = false;
-			StopAllCoroutines();
+			speed = GetComponent<NavMeshAgent>().speed;
 		}
-		else
-		{
-			StartCoroutine(CheckSignalPosition(obj));
-		}
-	}
 
-	public void CheckSig(GameObject obj)
-	{
-		if (obj.transform.GetChild(0).gameObject.activeSelf)
+		private void Update()
 		{
-			StopAtSignal = true;
-			StartCoroutine(CheckSignalPosition(obj));
+		}
+
+		private IEnumerator CheckSignalPosition(GameObject obj)
+		{
+			yield return new WaitForSeconds(0.5f);
+			if (!obj.transform.GetChild(0).gameObject.activeSelf)
+			{
+				StopAtSignal = false;
+				StopAllCoroutines();
+			}
+			else
+			{
+				StartCoroutine(CheckSignalPosition(obj));
+			}
+		}
+
+		public void CheckSig(GameObject obj)
+		{
+			if (obj.transform.GetChild(0).gameObject.activeSelf)
+			{
+				StopAtSignal = true;
+				StartCoroutine(CheckSignalPosition(obj));
+			}
 		}
 	}
 }

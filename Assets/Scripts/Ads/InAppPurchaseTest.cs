@@ -1,48 +1,51 @@
 using UnityEngine;
 
-public class InAppPurchaseTest : MonoBehaviour
+namespace BusSimulator
 {
-	private void Start()
+	public class InAppPurchaseTest : MonoBehaviour
 	{
-	}
+		private void Start()
+		{
+		}
 
-	public void onInitialized()
-	{
-		Debug.Log("IAP onInitialized");
-	}
+		public void onInitialized()
+		{
+			Debug.Log("IAP onInitialized");
+		}
 
-	public void onProductRequestSuccess()
-	{
-		Debug.Log("IAP onProductRequestSuccess");
-	}
+		public void onProductRequestSuccess()
+		{
+			Debug.Log("IAP onProductRequestSuccess");
+		}
 
-	public void onProductRequestFailure()
-	{
-		Debug.Log("IAP onProductRequestFailure");
-	}
+		public void onProductRequestFailure()
+		{
+			Debug.Log("IAP onProductRequestFailure");
+		}
 
-	public void onSuccess()
-	{
-		Debug.Log("IAP onSuccess");
-	}
+		public void onSuccess()
+		{
+			Debug.Log("IAP onSuccess");
+		}
 
-	public void onFailure()
-	{
-		Debug.Log("IAP onFailure");
-	}
+		public void onFailure()
+		{
+			Debug.Log("IAP onFailure");
+		}
 
-	public void onCanceled()
-	{
-		Debug.Log("IAP onCanceled");
-	}
+		public void onCanceled()
+		{
+			Debug.Log("IAP onCanceled");
+		}
 
-	public void onRestored()
-	{
-		Debug.Log("IAP onRestored");
-	}
+		public void onRestored()
+		{
+			Debug.Log("IAP onRestored");
+		}
 
-	public void onRestoreComplete()
-	{
-		Debug.Log("IAP onProductRequestFailure");
+		public void onRestoreComplete()
+		{
+			Debug.Log("IAP onProductRequestFailure");
+		}
 	}
 }

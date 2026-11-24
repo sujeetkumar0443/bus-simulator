@@ -1,62 +1,65 @@
 using UnityEngine;
 
-public class AdManager : MonoBehaviour
+namespace BusSimulator
 {
-    public static AdManager Instance { get; private set; }
-
-    private void Awake()
+    public class AdManager : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        public static AdManager Instance { get; private set; }
+
+        private void Awake()
         {
-            Destroy(gameObject); // Destroy duplicate instances
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject); // Destroy duplicate instances
+            }
+            else
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject); // Persist across scenes
+            }
         }
-        else
+
+        private void Start()
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Persist across scenes
+            Advertisements.Instance.Initialize();
+            // ShowBanner();
         }
-    }
 
-    private void Start()
-    {
-        Advertisements.Instance.Initialize();
-        // ShowBanner();
-    }
-
-    public void ShowBanner()
-    {
-        if (Advertisements.Instance.IsBannerOnScreen())
+        public void ShowBanner()
         {
-            Advertisements.Instance.ShowBanner(BannerPosition.TOP, BannerType.Banner);
+            if (Advertisements.Instance.IsBannerOnScreen())
+            {
+                Advertisements.Instance.ShowBanner(BannerPosition.TOP, BannerType.Banner);
+            }
         }
-    }
 
-    public void HideBanner()
-    {
-        Advertisements.Instance.HideBanner();
-    }
-
-    public void ShowInterstitial()
-    {
-        if (Advertisements.Instance.IsInterstitialAvailable())
+        public void HideBanner()
         {
-            Advertisements.Instance.ShowInterstitial();
+            Advertisements.Instance.HideBanner();
         }
-    }
 
-    public void ShowRewardedVideo()
-    {
-        if (Advertisements.Instance.IsRewardVideoAvailable())
+        public void ShowInterstitial()
         {
-            Advertisements.Instance.ShowRewardedVideo(VideoComplete);
+            if (Advertisements.Instance.IsInterstitialAvailable())
+            {
+                Advertisements.Instance.ShowInterstitial();
+            }
         }
-    }
 
-    private void VideoComplete(bool completed)
-    {
-        if (completed)
+        public void ShowRewardedVideo()
         {
-            // Handle the reward here, e.g., give the player some in-game currency.
+            if (Advertisements.Instance.IsRewardVideoAvailable())
+            {
+                Advertisements.Instance.ShowRewardedVideo(VideoComplete);
+            }
+        }
+
+        private void VideoComplete(bool completed)
+        {
+            if (completed)
+            {
+                // Handle the reward here, e.g., give the player some in-game currency.
+            }
         }
     }
 }

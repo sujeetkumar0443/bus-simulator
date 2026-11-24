@@ -1,6 +1,7 @@
 using UGUIMiniMap;
 using UnityEngine;
 using UnityEngine.UI;
+using BusSimulator;
 
 public class bl_MiniMapItem : MonoBehaviour
 {

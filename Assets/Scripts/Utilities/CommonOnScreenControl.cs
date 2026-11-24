@@ -1,5 +1,8 @@
 using UnityEngine;
 
-public class CommonOnScreenControl : MonoBehaviour
+namespace BusSimulator
 {
+    public class CommonOnScreenControl : MonoBehaviour
+    {
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using BusSimulator;
 
 [AddComponentMenu("BoneCracker Games/Realistic Car Controller/Camera/RCC Camera")]
 public class RCC_Camera : MonoBehaviour

@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class PassengerGroupSelector : MonoBehaviour
+namespace BusSimulator
 {
-	private void Start()
+	public class PassengerGroupSelector : MonoBehaviour
 	{
-		base.transform.Find("passengers").transform.GetChild(VehicleManager.vNo).gameObject.SetActive(true);
+		private void Start()
+		{
+			base.transform.Find("passengers").transform.GetChild(VehicleManager.vNo).gameObject.SetActive(true);
+		}
 	}
 }

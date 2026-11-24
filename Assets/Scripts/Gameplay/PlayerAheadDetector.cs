@@ -2,68 +2,71 @@ using SWS;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerAheadDetector : MonoBehaviour
+namespace BusSimulator
 {
-	private RaycastHit hit;
-
-	public GameObject left;
-
-	public GameObject right;
-
-	public GameObject center;
-
-	private float previousSpeed;
-
-	private bool playerDetected;
-
-	private void Start()
+	public class PlayerAheadDetector : MonoBehaviour
 	{
-		previousSpeed = GetComponent<NavMeshAgent>().speed;
-	}
+		private RaycastHit hit;
 
-	private void Update()
-	{
-		if (Physics.Raycast(center.transform.position, center.transform.forward, out hit, 10f) && !playerDetected)
+		public GameObject left;
+
+		public GameObject right;
+
+		public GameObject center;
+
+		private float previousSpeed;
+
+		private bool playerDetected;
+
+		private void Start()
 		{
-			if (hit.transform.tag == "Player")
+			previousSpeed = GetComponent<NavMeshAgent>().speed;
+		}
+
+		private void Update()
+		{
+			if (Physics.Raycast(center.transform.position, center.transform.forward, out hit, 10f) && !playerDetected)
 			{
-				playerDetected = true;
-				GetComponent<navMove>().ChangeSpeed(0f);
+				if (hit.transform.tag == "Player")
+				{
+					playerDetected = true;
+					GetComponent<navMove>().ChangeSpeed(0f);
+				}
+				else
+				{
+					GetComponent<navMove>().ChangeSpeed(previousSpeed);
+				}
 			}
-			else
+			else if (Physics.Raycast(left.transform.position, left.transform.forward, out hit, 10f) && !playerDetected)
 			{
+				if (hit.transform.tag == "Player")
+				{
+					playerDetected = true;
+					GetComponent<navMove>().ChangeSpeed(0f);
+				}
+				else
+				{
+					GetComponent<navMove>().ChangeSpeed(previousSpeed);
+				}
+			}
+			else if (Physics.Raycast(right.transform.position, right.transform.forward, out hit, 10f) && !playerDetected)
+			{
+				if (hit.transform.tag == "Player")
+				{
+					playerDetected = true;
+					GetComponent<navMove>().ChangeSpeed(0f);
+				}
+				else
+				{
+					GetComponent<navMove>().ChangeSpeed(previousSpeed);
+				}
+			}
+			else if (playerDetected)
+			{
+				playerDetected = false;
+				Debug.Log("speeeeed : " + GetComponent<NavMeshAgent>().speed);
 				GetComponent<navMove>().ChangeSpeed(previousSpeed);
 			}
-		}
-		else if (Physics.Raycast(left.transform.position, left.transform.forward, out hit, 10f) && !playerDetected)
-		{
-			if (hit.transform.tag == "Player")
-			{
-				playerDetected = true;
-				GetComponent<navMove>().ChangeSpeed(0f);
-			}
-			else
-			{
-				GetComponent<navMove>().ChangeSpeed(previousSpeed);
-			}
-		}
-		else if (Physics.Raycast(right.transform.position, right.transform.forward, out hit, 10f) && !playerDetected)
-		{
-			if (hit.transform.tag == "Player")
-			{
-				playerDetected = true;
-				GetComponent<navMove>().ChangeSpeed(0f);
-			}
-			else
-			{
-				GetComponent<navMove>().ChangeSpeed(previousSpeed);
-			}
-		}
-		else if (playerDetected)
-		{
-			playerDetected = false;
-			Debug.Log("speeeeed : " + GetComponent<NavMeshAgent>().speed);
-			GetComponent<navMove>().ChangeSpeed(previousSpeed);
 		}
 	}
 }

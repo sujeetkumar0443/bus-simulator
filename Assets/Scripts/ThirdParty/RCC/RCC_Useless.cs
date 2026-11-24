@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using BusSimulator;
 
 public class RCC_Useless : MonoBehaviour
 {

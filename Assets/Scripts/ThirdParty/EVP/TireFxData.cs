@@ -1,3 +1,4 @@
+using BusSimulator;
 namespace EVP
 {
 	public class TireFxData
