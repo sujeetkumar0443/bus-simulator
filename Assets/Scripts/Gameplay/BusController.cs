@@ -197,11 +197,12 @@ namespace BusSimulator
 			}
 			else
 			{
-				Debug.Log("station passenger : " + stationPassengers.transform.GetChild(VehicleManager.vNo).childCount);
-				rand = UnityEngine.Random.Range(3, stationPassengers.transform.GetChild(VehicleManager.vNo).childCount);
+				int stationIdx = Mathf.Min(VehicleManager.vNo, stationPassengers.transform.childCount - 1);
+				Debug.Log("station passenger : " + stationPassengers.transform.GetChild(stationIdx).childCount);
+				rand = UnityEngine.Random.Range(3, stationPassengers.transform.GetChild(stationIdx).childCount);
 				for (int j = 0; j < rand; j++)
 				{
-					stationPassengers.transform.GetChild(VehicleManager.vNo).transform.GetChild(j).GetComponent<PassengerController>().ActiveNow = true;
+					stationPassengers.transform.GetChild(stationIdx).transform.GetChild(j).GetComponent<PassengerController>().ActiveNow = true;
 				}
 				busdoorbtn.SetActive(true);
 			}
